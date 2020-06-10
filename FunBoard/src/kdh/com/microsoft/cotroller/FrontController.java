@@ -12,6 +12,7 @@ import kdh.com.microsoft.command.CalculatorUICommand;
 import kdh.com.microsoft.command.Command;
 import kdh.com.microsoft.command.CommandAction;
 import kdh.com.microsoft.command.KDHHomeCommand;
+import kdh.com.microsoft.command.LoginUICommand;
 
 /**
  * Servlet implementation class KDHFrontController
@@ -45,6 +46,8 @@ public class FrontController extends HttpServlet {
 			com = new CalculatorUICommand();
 		} else if (sp.equalsIgnoreCase("/calculator.kdh")) {
 			com = new CalculatorCommand();
+		} else if (sp.equalsIgnoreCase("/loginui.kdh")) {
+			com = new LoginUICommand();
 		} else {
 			System.out.println("제공하지 않는 서비스 입니다.");
 		}
