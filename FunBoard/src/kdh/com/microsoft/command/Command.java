@@ -1,4 +1,4 @@
-package kdh.com.microsoft;
+package kdh.com.microsoft.command;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
