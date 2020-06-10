@@ -26,9 +26,9 @@
 </style>
 </head>
 <body>
-	<a href="home.kdh">홈</a>
+	<a href="./home.kdh">홈</a>
 	<hr>
-	<form action="#" method="post">
+	<form action="calculator.kdh" method="post">
 		<table>
 			<tr>
 				<td class="output" colspan="4">0</td>
