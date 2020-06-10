@@ -11,7 +11,7 @@ public class InsertUICommand implements Command {
 	@Override
 	public CommandAction execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		return new CommandAction(true, "./kdhjsp/insert.jsp");
+		return new CommandAction(false, "./kdhjsp/insert.jsp");
 	}
 
 }
