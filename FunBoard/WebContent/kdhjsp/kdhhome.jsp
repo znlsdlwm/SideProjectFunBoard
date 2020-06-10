@@ -11,6 +11,6 @@
 </head>
 <body>
 	<h1>KDH의 메인 홈 입니다.</h1>
-	<h2>KDH의 계산기</h2>
+	<a href="calculator.kdh"> KDH의 계산기 </a>
 </body>
 </html>

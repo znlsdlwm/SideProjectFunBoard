@@ -12,7 +12,7 @@ public class CalculatorCommand implements Command {
 	public CommandAction execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		return new CommandAction(false, "./kdhcalc.jsp");
+		return new CommandAction(false, "./kdh_JSP/kdhcalc.jsp");
 	}
 
 }
