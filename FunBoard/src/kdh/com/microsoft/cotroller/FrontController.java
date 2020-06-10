@@ -15,6 +15,7 @@ import kdh.com.microsoft.command.InsertCommand;
 import kdh.com.microsoft.command.InsertUICommand;
 import kdh.com.microsoft.command.KDHHomeCommand;
 import kdh.com.microsoft.command.ListCommand;
+import kdh.com.microsoft.command.LoginCommand;
 import kdh.com.microsoft.command.LoginUICommand;
 
 /**
@@ -57,6 +58,10 @@ public class FrontController extends HttpServlet {
 			com = new InsertCommand();
 		} else if (sp.equalsIgnoreCase("/list.kdh")) {
 			com = new ListCommand();
+		} else if (sp.equalsIgnoreCase("/loginui.kdh")) {
+			com = new LoginUICommand();
+		} else if (sp.equalsIgnoreCase("/login.kdh")) {
+			com = new LoginCommand();
 		} else {
 			System.out.println("제공하지 않는 서비스 입니다.");
 		}
