@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import kdh.com.microsoft.command.CalculatorCommand;
+import kdh.com.microsoft.command.CalculatorUICommand;
 import kdh.com.microsoft.command.Command;
 import kdh.com.microsoft.command.CommandAction;
 import kdh.com.microsoft.command.KDHHomeCommand;
@@ -40,6 +41,8 @@ public class FrontController extends HttpServlet {
 
 		if (sp.equalsIgnoreCase("/home.kdh")) {
 			com = new KDHHomeCommand();
+		} else if (sp.equalsIgnoreCase("/calculatorui.kdh")) {
+			com = new CalculatorUICommand();
 		} else if (sp.equalsIgnoreCase("/calculator.kdh")) {
 			com = new CalculatorCommand();
 		} else {

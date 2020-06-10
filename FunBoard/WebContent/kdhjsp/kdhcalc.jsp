@@ -29,9 +29,14 @@
 	<a href="./home.kdh">홈</a>
 	<hr>
 	<form action="calculator.kdh" method="post">
+	<table>
+			<tr>
+				<td class="output" colspan="4">${cookie.resultAll.value}</td>
+			</tr>
+		</table>
 		<table>
 			<tr>
-				<td class="output" colspan="4">0</td>
+				<td class="output" colspan="4">${cookie.result.value}</td>
 			</tr>
 		</table>
 		<table>
