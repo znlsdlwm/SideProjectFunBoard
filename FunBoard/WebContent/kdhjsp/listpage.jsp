@@ -28,7 +28,9 @@
 		<c:forEach items="${list}" var="dto">
 			<tr>
 				<td>${dto.num}</td>
-				<td>${dto.title}</td>
+				<td width="300px"><c:forEach begin="1" end="${dto.repIndent}">
+						&nbsp;&nbsp;
+					</c:forEach> <a href="read.do?num=${dto.num}"> ${dto.title} </a></td>
 				<td>${dto.writer}</td>
 				<td>${dto.writeDay}</td>
 				<td>${dto.readcnt}</td>
