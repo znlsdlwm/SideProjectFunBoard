@@ -17,7 +17,7 @@
 		<h1>KDH의 메인 홈 입니다.</h1>
 	</c:if>
 	<c:if test="${not empty login}">
-		<a href="logoutui.kdh">로그아웃</a>
+		<a href="logout.kdh">로그아웃</a>
 	</c:if>
 	<c:if test="${empty login}">
 		<a href="loginui.kdh">로그인</a>
