@@ -12,7 +12,7 @@ import com.microsoft.kdh.domain.BoardDTO;
 
 import member.domain.LoginDTO;
 
-public class deleteBoardUICommand implements Command {
+public class ReplyeBoardUICommand implements Command {
 
 	@Override
 	public CommandAction execute(HttpServletRequest request, HttpServletResponse response)
@@ -27,20 +27,15 @@ public class deleteBoardUICommand implements Command {
 				if (sNum != null) {
 					num = Integer.parseInt(sNum);
 				}
-				boolean isUser = dao.isUser(login.getId(), num);
-				if (isUser) {
-					BoardDTO boarddto = dao.read(dao.getFkNum(num));
-					request.setAttribute("dto", boarddto);
-					 return new CommandAction(false, "./kdhjsp/deleteboard.jsp");
-				} else {
-					return new CommandAction(true, "listboard.kdh");
-				}
-			} else {
-				return new CommandAction(true, "listboard.kdh");
+				BoardDTO boarddto = dao.read(dao.getFkNum(num));
+				request.setAttribute("dto", boarddto);
+				return new CommandAction(false, "/kdhjsp/replyboard.jsp");
 			}
 		} else {
 			return new CommandAction(true, "listboard.kdh");
 		}
+		return new CommandAction(true, "listboard.kdh");
+
 	}
 
 }

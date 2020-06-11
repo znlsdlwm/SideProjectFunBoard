@@ -8,30 +8,39 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.microsoft.kdh.dao.BoardDAO;
+import com.microsoft.kdh.domain.BoardDTO;
 
 import member.domain.LoginDTO;
 
-public class UpdateBoardCommand implements Command {
+public class DeleteBoardUICommand implements Command {
 
 	@Override
 	public CommandAction execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		BoardDAO dao = new BoardDAO();
 		HttpSession session = request.getSession(false);
-		if(session!=null) {
+		if (session != null) {
 			LoginDTO login = (LoginDTO) session.getAttribute("login");
-			if(login!=null) {
-				String writer = login.getId();
-				String title = request.getParameter("title");
-				String content = request.getParameter("content");
+			if (login != null) {
 				String sNum = request.getParameter("num");
 				int num = -1;
-				if(sNum!=null)
+				if (sNum != null) {
 					num = Integer.parseInt(sNum);
-				dao.update(writer, title, content, num);
+				}
+				boolean isUser = dao.isUser(login.getId(), num);
+				if (isUser) {
+					BoardDTO boarddto = dao.read(dao.getFkNum(num));
+					request.setAttribute("dto", boarddto);
+					 return new CommandAction(false, "./kdhjsp/deleteboard.jsp");
+				} else {
+					return new CommandAction(true, "listboard.kdh");
+				}
+			} else {
+				return new CommandAction(true, "listboard.kdh");
 			}
+		} else {
+			return new CommandAction(true, "listboard.kdh");
 		}
-		return new CommandAction(true, "listboard.kdh");
 	}
 
 }

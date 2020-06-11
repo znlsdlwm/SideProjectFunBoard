@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.microsoft.kdh.dao.BoardDAO;
 
-public class deleteBoardCommand implements Command {
+public class DeleteBoardCommand implements Command {
 
 	@Override
 	public CommandAction execute(HttpServletRequest request, HttpServletResponse response)
