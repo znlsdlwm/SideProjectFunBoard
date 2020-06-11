@@ -13,6 +13,7 @@
 <body>
 <a href="./home.kdh">메인으로</a>
 <hr>
+<a href="./insertboardui.kdh">글쓰기</a>
 	<table border="1">
 		<tr>
 			<th>글번호</th>

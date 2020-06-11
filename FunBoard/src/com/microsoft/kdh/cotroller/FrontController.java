@@ -12,6 +12,7 @@ import com.microsoft.kdh.command.CalculatorUICommand;
 import com.microsoft.kdh.command.Command;
 import com.microsoft.kdh.command.CommandAction;
 import com.microsoft.kdh.command.InsertCommand;
+import com.microsoft.kdh.command.InsertBoardUICommand;
 import com.microsoft.kdh.command.InsertUICommand;
 import com.microsoft.kdh.command.KDHHomeCommand;
 import com.microsoft.kdh.command.ListCommand;
@@ -68,6 +69,8 @@ public class FrontController extends HttpServlet {
 			com = new LogoutCommand();
 		} else if (sp.equalsIgnoreCase("/listpage.kdh")) {
 			com = new ListPageCommand();
+		} else if (sp.equalsIgnoreCase("/insertboardui.kdh")) {
+			com = new InsertBoardUICommand();
 		} else {
 			System.out.println("제공하지 않는 서비스 입니다.");
 		}
