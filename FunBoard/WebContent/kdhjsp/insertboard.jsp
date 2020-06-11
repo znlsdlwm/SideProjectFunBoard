@@ -11,12 +11,14 @@
 </head>
 <body>
 	<h1>게시글 작성</h1>
-	<form action="insertboard.do">
+	<form action="insertboard.kdh">
 		title: <input type="text" name="title"><br>
 		writer: <input type="text" name="writer"><br>
 		content: <br>
 		<textarea rows="5" name="content"></textarea><br>
 		<input type="submit" value="전송">
 	</form>
+	<br><br><br>
+	<a href="listpage.kdh">목록으로</a>
 </body>
 </html>
