@@ -15,6 +15,26 @@ public class ListBoardCommand implements Command {
 	public CommandAction execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String sCurPage = request.getParameter("curPage");
+		String query = request.getParameter("query");
+		if(query==null) {
+			query="";
+		}
+		int curPage = limitPage(sCurPage);
+		
+		BoardDAO dao = new BoardDAO();
+//		PageTO to = dao.page(curPage);
+		PageTO to = dao.searchQuery(curPage, query);
+		if(curPage>to.getTotalPage())
+			curPage = to.getTotalPage();
+//		to = dao.page(curPage);
+		to = dao.searchQuery(curPage, query);
+		request.setAttribute("list", to.getList());
+		request.setAttribute("to", to);
+		request.setAttribute("query", query);
+		return new CommandAction(false, "./kdhjsp/listpage.jsp");
+	}
+	
+	private int limitPage(String sCurPage) {
 		int curPage = 1;
 		try {
 			if(sCurPage!=null) {
@@ -27,17 +47,6 @@ public class ListBoardCommand implements Command {
 		} catch (NumberFormatException e) {
 			curPage = 1;
 		}
-		
-		BoardDAO dao = new BoardDAO();
-		PageTO to = dao.page(curPage);
-		
-		if(curPage>to.getTotalPage())
-			curPage = to.getTotalPage();
-		to = dao.page(curPage);
-		
-		request.setAttribute("list", to.getList());
-		request.setAttribute("to", to);
-		return new CommandAction(false, "./kdhjsp/listpage.jsp");
+		return curPage;
 	}
-
 }
