@@ -10,6 +10,9 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<a href="home.kdh">메인으로</a>
+	<hr>
+	<h1>로그인 화면</h1>
 	<form action="#">
 		ID: <input name="id"><br>
 		PW: <input name="pw"><br>
