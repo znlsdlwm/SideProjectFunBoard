@@ -1,4 +1,4 @@
-package com.microsoft.kdh.command;
+package com.microsoft.kdh.calculator.command;
 
 import java.io.IOException;
 import java.math.BigDecimal;
@@ -13,6 +13,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.microsoft.kdh.command.Command;
+import com.microsoft.kdh.command.CommandAction;
 
 public class CalculatorCommand implements Command {
 
