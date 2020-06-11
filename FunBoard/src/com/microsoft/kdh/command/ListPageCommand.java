@@ -1,7 +1,6 @@
 package com.microsoft.kdh.command;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -17,11 +16,25 @@ public class ListPageCommand implements Command {
 			throws ServletException, IOException {
 		String sCurPage = request.getParameter("curPage");
 		int curPage = 1;
-		if(sCurPage!=null)
-			curPage = Integer.parseInt(sCurPage);
+		try {
+			if(sCurPage!=null) {
+				Double d = Double.parseDouble(sCurPage);
+				curPage = (int) Math.floor(d);
+				if(curPage<0) {
+					curPage = 1;
+				}
+			}
+		} catch (NumberFormatException e) {
+			curPage = 1;
+		}
 		
 		BoardDAO dao = new BoardDAO();
 		PageTO to = dao.page(curPage);
+		
+		if(curPage>to.getTotalPage())
+			curPage = to.getTotalPage();
+		to = dao.page(curPage);
+		
 		request.setAttribute("list", to.getList());
 		request.setAttribute("to", to);
 		return new CommandAction(false, "./kdhjsp/listpage.jsp");
