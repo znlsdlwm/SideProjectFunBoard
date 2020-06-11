@@ -13,7 +13,7 @@ public class LoginUICommand implements Command {
 	@Override
 	public CommandAction execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		return new CommandAction(true, "./kdhjsp/loginui.jsp");
+		return new CommandAction(false, "./kdhjsp/loginui.jsp");
 	}
 
 }
