@@ -15,6 +15,7 @@ import com.microsoft.kdh.command.InsertCommand;
 import com.microsoft.kdh.command.InsertUICommand;
 import com.microsoft.kdh.command.KDHHomeCommand;
 import com.microsoft.kdh.command.ListCommand;
+import com.microsoft.kdh.command.ListPageCommand;
 import com.microsoft.kdh.command.LoginCommand;
 import com.microsoft.kdh.command.LoginUICommand;
 import com.microsoft.kdh.command.LogoutCommand;
@@ -65,6 +66,8 @@ public class FrontController extends HttpServlet {
 			com = new LoginCommand();
 		} else if (sp.equalsIgnoreCase("/logout.kdh")) {
 			com = new LogoutCommand();
+		} else if (sp.equalsIgnoreCase("/listpage.kdh")) {
+			com = new ListPageCommand();
 		} else {
 			System.out.println("제공하지 않는 서비스 입니다.");
 		}
