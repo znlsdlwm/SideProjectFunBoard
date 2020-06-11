@@ -24,6 +24,8 @@ import com.microsoft.kdh.command.LogoutCommand;
 import com.microsoft.kdh.command.ReadBoardCommand;
 import com.microsoft.kdh.command.UpdateBoardCommand;
 import com.microsoft.kdh.command.UpdateBoardUICommand;
+import com.microsoft.kdh.command.deleteBoardCommand;
+import com.microsoft.kdh.command.deleteBoardUICommand;
 
 /**
  * Servlet implementation class KDHFrontController
@@ -83,7 +85,11 @@ public class FrontController extends HttpServlet {
 			com = new UpdateBoardUICommand();
 		} else if (sp.equalsIgnoreCase("/updateboard.kdh")) {
 			com = new UpdateBoardCommand();
-		} else {
+		} else if (sp.equalsIgnoreCase("/deleteboardui.kdh")) {
+			com = new deleteBoardUICommand();
+		} else if (sp.equalsIgnoreCase("/deleteboard.kdh")) {
+			com = new deleteBoardCommand();
+		}else {
 			System.out.println("제공하지 않는 서비스 입니다.");
 		}
 
