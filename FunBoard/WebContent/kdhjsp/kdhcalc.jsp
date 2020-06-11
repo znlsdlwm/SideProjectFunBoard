@@ -26,7 +26,7 @@
 </style>
 </head>
 <body>
-	<a href="./home.kdh">홈</a>
+	<a href="./home.kdh">메인으로</a>
 	<hr>
 	<form action="calculator.kdh" method="post">
 	<table>

@@ -15,7 +15,8 @@ text-align: right;
 </style>
 </head>
 <body>
-	<a href="./home.kdh">kdh메인으로</a>
+	<a href="./home.kdh">메인으로</a>
+	<hr>
 	<h1>회원가입</h1>
 	<form action="insert.kdh">
 		ID: <input name="id"><br>

@@ -11,6 +11,7 @@
 </head>
 <body>
 	<a href="./home.kdh">메인으로</a>
+	<hr>
 	<h1>회원목록</h1>
 	<c:forEach items="${list}" var="dto">
 		<a href="#">ID: ${dto.id}&nbsp;&nbsp;Name: ${dto.name}&nbsp;&nbsp;Age: ${dto.age}</a><br>
