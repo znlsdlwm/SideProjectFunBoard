@@ -1,4 +1,4 @@
-package com.microsoft.kdh.command;
+package com.microsoft.kdh.board.command;
 
 import java.io.IOException;
 
@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.microsoft.kdh.command.Command;
+import com.microsoft.kdh.command.CommandAction;
 import com.microsoft.kdh.dao.BoardDAO;
 import com.microsoft.kdh.domain.BoardDTO;
 
