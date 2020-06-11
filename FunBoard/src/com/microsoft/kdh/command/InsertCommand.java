@@ -1,4 +1,4 @@
-package kdh.com.microsoft.command;
+package com.microsoft.kdh.command;
 
 import java.io.IOException;
 
@@ -6,7 +6,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import kdh.com.microsoft.dao.MemberDAO;
+import com.microsoft.kdh.dao.MemberDAO;
+
 import member.domain.MemberDTO;
 
 public class InsertCommand implements Command {

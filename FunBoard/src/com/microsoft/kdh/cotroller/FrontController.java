@@ -1,4 +1,4 @@
-package kdh.com.microsoft.cotroller;
+package com.microsoft.kdh.cotroller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -7,16 +7,16 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import kdh.com.microsoft.command.CalculatorCommand;
-import kdh.com.microsoft.command.CalculatorUICommand;
-import kdh.com.microsoft.command.Command;
-import kdh.com.microsoft.command.CommandAction;
-import kdh.com.microsoft.command.InsertCommand;
-import kdh.com.microsoft.command.InsertUICommand;
-import kdh.com.microsoft.command.KDHHomeCommand;
-import kdh.com.microsoft.command.ListCommand;
-import kdh.com.microsoft.command.LoginCommand;
-import kdh.com.microsoft.command.LoginUICommand;
+import com.microsoft.kdh.command.CalculatorCommand;
+import com.microsoft.kdh.command.CalculatorUICommand;
+import com.microsoft.kdh.command.Command;
+import com.microsoft.kdh.command.CommandAction;
+import com.microsoft.kdh.command.InsertCommand;
+import com.microsoft.kdh.command.InsertUICommand;
+import com.microsoft.kdh.command.KDHHomeCommand;
+import com.microsoft.kdh.command.ListCommand;
+import com.microsoft.kdh.command.LoginCommand;
+import com.microsoft.kdh.command.LoginUICommand;
 
 /**
  * Servlet implementation class KDHFrontController

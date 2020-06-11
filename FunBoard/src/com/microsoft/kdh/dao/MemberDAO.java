@@ -1,4 +1,4 @@
-package kdh.com.microsoft.dao;
+package com.microsoft.kdh.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,6 +12,7 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
+import member.domain.LoginDTO;
 import member.domain.MemberDTO;
 
 public class MemberDAO {
@@ -44,6 +45,7 @@ public class MemberDAO {
 			closeAll(null, pstmt, conn);
 		}
 	}
+
 	public List<MemberDTO> selectAll() {
 		List<MemberDTO> list = new ArrayList<MemberDTO>();
 		Connection conn = null;
@@ -67,6 +69,30 @@ public class MemberDAO {
 		}
 		return list;
 	}
+
+	public boolean login(LoginDTO loginDTO) {
+		boolean isUser = false;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "select * from member where id=? and pw=?";
+		try {
+			conn = dataFactory.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, loginDTO.getId());
+			pstmt.setString(2, loginDTO.getPw());
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				isUser = true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeAll(rs, pstmt, conn);
+		}
+		return isUser;
+	}
+
 	private void closeAll(ResultSet rs, PreparedStatement pstmt, Connection conn) {
 		try {
 			if (rs != null)
@@ -79,4 +105,5 @@ public class MemberDAO {
 			e.printStackTrace();
 		}
 	}
+
 }

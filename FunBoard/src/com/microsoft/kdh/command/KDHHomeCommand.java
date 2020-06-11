@@ -1,4 +1,4 @@
-package kdh.com.microsoft.command;
+package com.microsoft.kdh.command;
 
 import java.io.IOException;
 
@@ -6,8 +6,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import kdh.com.microsoft.command.Command;
-import kdh.com.microsoft.command.CommandAction;
+import com.microsoft.kdh.command.Command;
+import com.microsoft.kdh.command.CommandAction;
 
 public class KDHHomeCommand implements Command {
 

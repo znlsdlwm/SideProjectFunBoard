@@ -1,4 +1,4 @@
-package kdh.com.microsoft.command;
+package com.microsoft.kdh.command;
 
 public class CommandAction {
 	private boolean isRedirect;

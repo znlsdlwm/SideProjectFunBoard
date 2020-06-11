@@ -1,4 +1,4 @@
-package kdh.com.microsoft.command;
+package com.microsoft.kdh.command;
 
 import java.io.IOException;
 import java.math.BigDecimal;

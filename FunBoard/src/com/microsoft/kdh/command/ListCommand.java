@@ -1,4 +1,4 @@
-package kdh.com.microsoft.command;
+package com.microsoft.kdh.command;
 
 import java.io.IOException;
 import java.util.List;
@@ -7,9 +7,10 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import kdh.com.microsoft.command.Command;
-import kdh.com.microsoft.command.CommandAction;
-import kdh.com.microsoft.dao.MemberDAO;
+import com.microsoft.kdh.command.Command;
+import com.microsoft.kdh.command.CommandAction;
+import com.microsoft.kdh.dao.MemberDAO;
+
 import member.domain.MemberDTO;
 
 public class ListCommand implements Command {

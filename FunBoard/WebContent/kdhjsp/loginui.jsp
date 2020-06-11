@@ -13,9 +13,9 @@
 	<a href="home.kdh">메인으로</a>
 	<hr>
 	<h1>로그인 화면</h1>
-	<form action="#">
+	<form action="login.kdh" method="post">
 		ID: <input name="id"><br>
-		PW: <input name="pw"><br>
+		PW: <input name="pw" type="password"><br>
 		<input type="submit" value="전송">
 	</form>
 </body>
