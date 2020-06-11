@@ -11,7 +11,15 @@
 <title>Insert title here</title>
 </head>
 <body align="center">
-	<h1>KJM 게시판</h1>
+<br><br><br><h1>KJM 게시판</h1> 
+<Lbody align="right">
+<form action="Login.kjm" method="post">
+		ID : <input name = "id"> <br>
+		PW : <input name = "pw" type="password"><br>
+		<input type="submit" value="로그인">
+</form>
+</Lbody>
+		<input type="button" action="LogInsertui.kjm" value="회원가입">
 
 	<table border="1" align="center">
 		<thead>
