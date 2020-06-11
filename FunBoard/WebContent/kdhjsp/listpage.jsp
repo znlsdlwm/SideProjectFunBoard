@@ -37,10 +37,20 @@
 			</tr>
 		</c:forEach>
 	</table>
-	<a>&laquo;</a>
+	<c:if test="${to.curPage>1}">
+		<a href="listpage.kdh?curPage=${1}">처음으로</a>&nbsp;
+	</c:if>
+	<c:if test="${to.beginPageNum>1}">
+		<a href="listpage.kdh?curPage=${to.curPage-to.perPage}">이전</a>&nbsp;
+	</c:if>
 		<c:forEach begin="${to.beginPageNum}" end="${to.stopPageNum}" var="idx">
 				<a href="listpage.kdh?curPage=${idx}">${idx}</a>&nbsp;&nbsp;
 		</c:forEach>
-	<a>&raquo;</a>
+	<c:if test="${to.stopPageNum<to.totalPage}">
+		<a href="listpage.kdh?curPage=${to.curPage+to.perPage}">다음</a>&nbsp;
+	</c:if>
+	<c:if test="${to.curPage<to.totalPage}">
+		<a href="listpage.kdh?curPage=${to.totalPage}">끝으로</a>&nbsp;
+	</c:if>
 </body>
 </html>
