@@ -13,7 +13,7 @@
 	<h1>게시글 작성</h1>
 	<form action="insertboard.kdh">
 		title: <input type="text" name="title"><br>
-		writer: <input type="text" name="writer"><br>
+		writer: <input type="text" readonly="readonly" value="${login.id}"><br>
 		content: <br>
 		<textarea rows="5" name="content"></textarea><br>
 		<input type="submit" value="전송">
