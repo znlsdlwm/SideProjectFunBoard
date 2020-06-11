@@ -8,8 +8,14 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+input{
+text-align: right;
+}
+</style>
 </head>
 <body>
+	<a href="./home.kdh">kdh메인으로</a>
 	<h1>회원가입</h1>
 	<form action="insert.kdh">
 		ID: <input name="id"><br>
