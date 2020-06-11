@@ -13,7 +13,7 @@
 	<h1>글 수정</h1>
 	<form action="updateboard.kdh" method="post">
 		글번호: <input name="num" value="${dto.num}" readonly="readonly"><br>
-		글쓴이: <input name="writer" value="${dto.writer}"><br>
+		글쓴이: <input name="writer" value="${dto.writer}" readonly="readonly"><br>
 		글제목: <input name="title" value="${dto.title}"><br>
 		글내용: <textarea name="content" rows="10" cols="50">${dto.content}</textarea><br>
 		<input type="submit" value="확인">
