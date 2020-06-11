@@ -16,18 +16,23 @@ public class UpdateBoardCommand implements Command {
 	@Override
 	public CommandAction execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		HttpSession session = request.getSession();
-		LoginDTO login = (LoginDTO) session.getAttribute("login");
-		String writer = login.getId(); 
-		String title = request.getParameter("title");
-		String content = request.getParameter("content");
-		String sNum = request.getParameter("num");
-		int num = -1;
-		if(sNum!=null)
-			num = Integer.parseInt(sNum);
 		BoardDAO dao = new BoardDAO();
-		dao.update(writer, title, content, num);
-		return null;
+		HttpSession session = request.getSession(false);
+		if(session!=null) {
+			LoginDTO login = (LoginDTO) session.getAttribute("login");
+			if(login!=null) {
+				String writer = login.getId();
+				String title = request.getParameter("title");
+				String content = request.getParameter("content");
+				String sNum = request.getParameter("num");
+				System.out.println(sNum);
+				int num = -1;
+				if(sNum!=null)
+					num = Integer.parseInt(sNum);
+				dao.update(writer, title, content, num);
+			}
+		}
+		return new CommandAction(true, "listboard.kdh");
 	}
 
 }
