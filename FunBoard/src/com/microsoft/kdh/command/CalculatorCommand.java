@@ -75,9 +75,6 @@ public class CalculatorCommand implements Command {
 			} else if(operator.equals("=")) {
 				// GraalVM 으로 추후 대체가능
 				ScriptEngine engine = new ScriptEngineManager().getEngineByName("nashorn");
-				System.out.println(resultAll);
-				System.out.println(result);
-				System.out.println(resultAll+result);
 				try {
 					result = String.valueOf(engine.eval(resultAll+result));
 					resultAll = "";
@@ -99,14 +96,6 @@ public class CalculatorCommand implements Command {
 		response.addCookie(resultAllCookie);
 		return new CommandAction(true, "calculatorui.kdh");
 	}
-	private String calcAll(String resultAll, String result) {
-		if(resultAll.equals("")) {
-			return result;
-		} else {
-			
-		}
-		return result;
-	}
 	private String calValue(String value, String result) {
 		String rs = result;
 		if (value != null) {
@@ -127,10 +116,5 @@ public class CalculatorCommand implements Command {
 				return rs+=".";
 		}
 		return rs;
-	}
-	//테스트용 반드시 지우기
-	public static void main(String[] args) {
-		String rs = "12312.31.0";
-		System.out.println(!rs.contains("."));
 	}
 }
