@@ -30,7 +30,7 @@
 				<td>${dto.num}</td>
 				<td width="300px"><c:forEach begin="1" end="${dto.repIndent}">
 						&nbsp;&nbsp;
-					</c:forEach> <a href="read.do?num=${dto.num}"> ${dto.title} </a></td>
+					</c:forEach><a href="readboard.kdh?num=${dto.num}"> ${dto.title} </a></td>
 				<td>${dto.writer}</td>
 				<td>${dto.writeDay}</td>
 				<td>${dto.readcnt}</td>
@@ -41,19 +41,19 @@
 		</c:forEach>
 	</table>
 	<c:if test="${to.curPage>1}">
-		<a href="listpage.kdh?curPage=${1}">처음으로</a>&nbsp;
+		<a href="listboard.kdh?curPage=${1}">처음으로</a>&nbsp;
 	</c:if>
 	<c:if test="${to.beginPageNum>1}">
-		<a href="listpage.kdh?curPage=${to.curPage-to.perPage}">이전</a>&nbsp;
+		<a href="listboard.kdh?curPage=${to.curPage-to.perPage}">이전</a>&nbsp;
 	</c:if>
 		<c:forEach begin="${to.beginPageNum}" end="${to.stopPageNum}" var="idx">
-				<a href="listpage.kdh?curPage=${idx}">${idx}</a>&nbsp;&nbsp;
+				<a href="listboard.kdh?curPage=${idx}">${idx}</a>&nbsp;&nbsp;
 		</c:forEach>
 	<c:if test="${to.stopPageNum<to.totalPage}">
-		<a href="listpage.kdh?curPage=${to.curPage+to.perPage}">다음</a>&nbsp;
+		<a href="listboard.kdh?curPage=${to.curPage+to.perPage}">다음</a>&nbsp;
 	</c:if>
 	<c:if test="${to.curPage<to.totalPage}">
-		<a href="listpage.kdh?curPage=${to.totalPage}">끝으로</a>&nbsp;
+		<a href="listboard.kdh?curPage=${to.totalPage}">끝으로</a>&nbsp;
 	</c:if>
 </body>
 </html>

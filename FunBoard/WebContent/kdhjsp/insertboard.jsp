@@ -19,6 +19,6 @@
 		<input type="submit" value="전송">
 	</form>
 	<br><br><br>
-	<a href="listpage.kdh">목록으로</a>
+	<a href="listboard.kdh">목록으로</a>
 </body>
 </html>

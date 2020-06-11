@@ -27,7 +27,7 @@
 	<br>
 	<br>
 	<a href="calculator.kdh"> KDH의 계산기 </a><br>
-	<a href="listpage.kdh"> 게시판 </a><br>
+	<a href="listboard.kdh"> 게시판 </a><br>
 
 	<br>
 	<br>

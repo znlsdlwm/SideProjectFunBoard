@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.microsoft.kdh.dao.BoardDAO;
 import com.microsoft.kdh.domain.PageTO;
 
-public class ListPageCommand implements Command {
+public class ListBoardCommand implements Command {
 
 	@Override
 	public CommandAction execute(HttpServletRequest request, HttpServletResponse response)
