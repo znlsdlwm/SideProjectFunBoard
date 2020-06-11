@@ -14,7 +14,11 @@
 <a href="./home.kdh">메인으로</a>
 <hr>
 <a href="./insertboardui.kdh">글쓰기</a>
-<form action="listboard.kdh?query=${query}&curPage=${to.curPage}">
+<form action="listboard.kdh?query=${query}&curPage=${to.curPage}&option=${option}">
+	<select name="option">
+		<option value="1">제목</option>
+		<option value="2">글쓴이</option>
+	</select>
 	<input name="query">
 	<input type="submit" value="검색">
 </form>

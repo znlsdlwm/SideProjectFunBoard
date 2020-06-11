@@ -28,6 +28,40 @@ public class BoardDAO {
 			e.printStackTrace();
 		}
 	}
+	public PageTO searchQueryOption(int curPage, String query) {
+		PageTO to = new PageTO(curPage);
+		List<BoardDTO> list = new ArrayList<BoardDTO>();
+		String sql = "select * from (" + "select rownum rnum, num, title, writer, writeday, readcnt, repIndent from ("
+				+ "select * from board where writer like ? order by repRoot desc , repStep)) " + "where rnum>=? and rnum<=?";
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			conn = dataFactory.getConnection();
+			int amount = getAmountQO(conn, query);
+			to.setAmount(amount);
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, "%"+query+"%");
+			pstmt.setInt(2, to.getStartNum());
+			pstmt.setInt(3, to.getEndNum());
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				int num = rs.getInt("rnum");
+				String title = rs.getString("title");
+				String writer = rs.getString("writer");
+				String writeDay = rs.getString("writeday");
+				int readcnt = rs.getInt("readcnt");
+				int repIndent = rs.getInt("repIndent");
+				list.add(new BoardDTO(num, writer, title, null, writeDay, readcnt, -1, -1, repIndent));
+			}
+			to.setList(list);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			clossAll(rs, pstmt, conn);
+		}
+		return to;
+	}
 	public PageTO searchQuery(int curPage, String query) {
 		PageTO to = new PageTO(curPage);
 		List<BoardDTO> list = new ArrayList<BoardDTO>();
@@ -428,6 +462,25 @@ public class BoardDAO {
 		String sql = "select count(num) from board where title like ?";
 		ResultSet rs = null;
 
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, "%"+query+"%");
+			rs = pstmt.executeQuery();
+			if (rs.next())
+				amount = rs.getInt(1);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			clossAll(rs, pstmt, null);
+		}
+
+		return amount;
+	}
+	private int getAmountQO(Connection conn, String query) {
+		int amount = 0;
+		PreparedStatement pstmt = null;
+		String sql = "select count(num) from board where writer like ?";
+		ResultSet rs = null;
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, "%"+query+"%");
