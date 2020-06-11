@@ -22,6 +22,8 @@ import com.microsoft.kdh.command.LoginCommand;
 import com.microsoft.kdh.command.LoginUICommand;
 import com.microsoft.kdh.command.LogoutCommand;
 import com.microsoft.kdh.command.ReadBoardCommand;
+import com.microsoft.kdh.command.UpdateBoardCommand;
+import com.microsoft.kdh.command.UpdateBoardUICommand;
 
 /**
  * Servlet implementation class KDHFrontController
@@ -77,6 +79,10 @@ public class FrontController extends HttpServlet {
 			com = new InsertBoardCommand();
 		} else if (sp.equalsIgnoreCase("/readboard.kdh")) {
 			com = new ReadBoardCommand();
+		} else if (sp.equalsIgnoreCase("/updateboardui.kdh")) {
+			com = new UpdateBoardUICommand();
+		} else if (sp.equalsIgnoreCase("/updateboard.kdh")) {
+			com = new UpdateBoardCommand();
 		} else {
 			System.out.println("제공하지 않는 서비스 입니다.");
 		}

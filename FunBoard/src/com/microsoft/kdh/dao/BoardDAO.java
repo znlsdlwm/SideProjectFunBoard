@@ -28,7 +28,49 @@ public class BoardDAO {
 			e.printStackTrace();
 		}
 	}
-
+	public int getFkNum(int num) {
+		int fkNum= -1;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "select * from (" + "select rownum rnum, num, title, writer, writeday, readcnt, repIndent from ("
+				+ "select * from board order by repRoot desc , repStep)) " + "rnum=?";
+		try {
+			conn = dataFactory.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, num);
+			rs = pstmt.executeQuery();
+			if(rs.next())
+				fkNum = rs.getInt("num");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			clossAll(rs, pstmt, conn);
+		}
+		return fkNum;
+	}
+	public boolean isUser(String id, int num) {
+		boolean isUser = false;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "select * from (" + "select rownum rnum, num, title, writer, writeday, readcnt, repIndent from ("
+				+ "select * from board order by repRoot desc , repStep)) " + "where writer=? and rnum=?";
+		try {
+			conn = dataFactory.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			pstmt.setInt(2, num);
+			rs = pstmt.executeQuery();
+			if(rs.next())
+				isUser=true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			clossAll(rs, pstmt, conn);
+		}
+		return isUser;
+	}
 	public void reply(int orgnum, BoardDTO dto) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
