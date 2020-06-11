@@ -34,7 +34,7 @@ public class BoardDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String sql = "select * from (" + "select rownum rnum, num, title, writer, writeday, readcnt, repIndent from ("
-				+ "select * from board order by repRoot desc , repStep)) " + "rnum=?";
+				+ "select * from board order by repRoot desc , repStep)) " + "where rnum=?";
 		try {
 			conn = dataFactory.getConnection();
 			pstmt = conn.prepareStatement(sql);
