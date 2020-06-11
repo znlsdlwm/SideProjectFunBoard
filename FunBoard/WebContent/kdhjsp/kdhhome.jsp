@@ -10,8 +10,18 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>KDH의 메인 홈 입니다.</h1>
-	<a href="loginui.kdh">로그인</a>
+	<c:if test="${not empty login}">
+		<h1>${login.id} 님 환영합니다.</h1>
+	</c:if>
+	<c:if test="${empty login}">
+		<h1>KDH의 메인 홈 입니다.</h1>
+	</c:if>
+	<c:if test="${not empty login}">
+		<a href="logoutui.kdh">로그아웃</a>
+	</c:if>
+	<c:if test="${empty login}">
+		<a href="loginui.kdh">로그인</a>
+	</c:if>
 	<a href="insertui.kdh">회원가입</a>
 	<a href="list.kdh">회원목록</a>
 	<br>
