@@ -39,7 +39,7 @@ public class ListBoardCommand implements Command {
 		request.setAttribute("list", to.getList());
 		request.setAttribute("to", to);
 		request.setAttribute("query", query);
-		return new CommandAction(false, "./kdhjsp/listpage.jsp");
+		return new CommandAction(false, "./kdhjsp/listboard.jsp");
 	}
 	
 	private int limitPage(String sCurPage) {

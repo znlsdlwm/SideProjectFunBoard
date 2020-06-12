@@ -63,5 +63,6 @@
 	<c:if test="${to.curPage<to.totalPage}">
 		<a href="listboard.kdh?query=${query}&curPage=${to.totalPage}">끝으로</a>&nbsp;
 	</c:if>
+	
 </body>
 </html>
