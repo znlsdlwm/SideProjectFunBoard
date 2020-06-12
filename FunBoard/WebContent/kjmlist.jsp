@@ -13,13 +13,37 @@
 <body align="center">
 <br><br><br><h1>KJM 게시판</h1> 
 <Lbody align="right">
-<form action="Login.kjm" method="post">
+<c:choose>
+	<c:when test="${empty login.id}">
+	<form action="Login.kjm" method="post">
+		<div style = "padding: 0px 100px 0px 0px;"> 
 		ID : <input name = "id"> <br>
-		PW : <input name = "pw" type="password"><br>
+		</div>
+		<div style = "padding: 0px 38px 0px 0px;">
+		PW : <input name = "pw" type="password">
 		<input type="submit" value="로그인">
-</form>
+		</div>
+		<br>
+	</form>
+	<div style = "padding: 0px 210px 0px 0px;">
+		<a href="LogInsertui.kjm">회원가입</a>
+	</div>
+	</c:when>
+	<c:otherwise>
+	<form action="Logout.kjm" method="post">
+		<div style = "padding: 0px 130px 0px 0px;"> 
+		${login.id} 님
+		<input type="submit" value="로그아웃">
+		</div>
+		<div style = "padding: 0px 210px 0px 0px;">
+	<a href="LogSelectById.kjm?id=${login.id}">회원정보</a>
+		</div>
+	</form><br>
+
+	</c:otherwise>
+</c:choose>
+		
 </Lbody>
-		<input type="button" action="LogInsertui.kjm" value="회원가입">
 
 	<table border="1" align="center">
 		<thead>

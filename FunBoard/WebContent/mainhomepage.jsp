@@ -10,7 +10,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<a href=""></a><br>
+	<a href="kjm.main"></a><br>
 	<a href=""></a><br>
 	<a href=""></a><br>
 	<a href=""></a><br>

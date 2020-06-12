@@ -48,4 +48,60 @@ public MemberDAO() {
 			closeAll(null, pstmt, conn);
 		}
 	}
+	
+	public boolean login(MemberDTO dto) {
+		boolean login = false;
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = "select * from member where id=? and pw=?";
+		ResultSet rs= null;
+		
+		try {
+			conn = dataFactory.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, dto.getId());
+			pstmt.setString(2, dto.getPw());
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				login = true;
+				System.out.println(login);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			}finally {
+			closeAll(null, pstmt, conn);
+			}
+		return login;
+	}
+	public MemberDTO selectById(String id) {
+		MemberDTO dto = null;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = "select * from member where id=?";
+		ResultSet rs = null;
+		
+		try {
+			conn = dataFactory.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				String name = rs.getString("name");
+				int age = rs.getInt("age");
+				String pw = rs.getString("pw");
+				
+				dto = new MemberDTO(id, name, age, pw);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			}finally {
+			closeAll(null, pstmt, conn);
+			
+			}
+		return dto;
+		}
 }
+	
