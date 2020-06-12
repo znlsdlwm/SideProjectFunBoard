@@ -14,14 +14,29 @@
 <body>
 	<h1>게시글 목록</h1>
 
-	<form action="sdj_list.sdj?query=${query}" method="get">
+<!--  
+<form action="sdj_list.sdj?query=${query}" method="get">
 
 		제목 : <input type="text" size="20" name="title" />&nbsp; 
 		<input type="submit" value="검색" />
 	</form>
+-->	
+
+	<div id="searchForm">
+        <form>
+            <select name="opt">
+                <option value="0">제목</option>
+                <option value="1">내용</option>
+                <option value="2">제목+내용</option>
+                <option value="3">글쓴이</option>
+            </select>
+            <input type="text" size="20" name="condition"/>&nbsp;
+            <input type="submit" value="검색"/>
+        </form>    
+    </div>
 
 
-	<a href="sdj_insertui.sdj">글쓰기</a>
+	<button type="button" onclick="location.href='sdj_insertui.sdj' ">글쓰기</button>
 	<table border="1">
 		<thead>
 			<tr>
@@ -53,8 +68,7 @@
 	</table>
 
 
-	<a
-		href="sdj_list.sdj?query=${query}?curPage=${(to.curPage-1) > 0 ? (to.curPage-1) : 1}">&laquo;</a>&nbsp;&nbsp;
+	<a href="sdj_list.sdj?curPage=${(to.curPage-1) > 0 ? (to.curPage-1) : 1}">&laquo;</a>&nbsp;&nbsp;
 	<c:forEach begin="${to.beginPageNum}" end="${to.stopPageNum}" var="idx">
 		<c:if test="${to.curPage == idx}">
 			<a style="font-size: 20px;"
