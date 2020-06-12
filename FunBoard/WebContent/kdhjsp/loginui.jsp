@@ -8,15 +8,36 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
 	<a href="home.kdh">메인으로</a>
 	<hr>
 	<h1>로그인 화면</h1>
 	<form action="login.kdh" method="post">
-		ID: <input name="id"><br>
+		ID: <input name="id" id="id"><button>ID 중복체크</button><br>
 		PW: <input name="pw" type="password"><br>
 		<input type="submit" value="전송">
 	</form>
+	<p></p>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$("button").click(function(event) {
+				event.preventDefault();
+				var id = $("#id").val();
+				$.ajax({
+					type : "get",
+					url : "logidcheck.kdh",
+					data : {
+						id : id
+					},
+					dataType : "text",
+					success : function(result) {
+						$("p").text(result);
+					}
+				});
+			});
+		});
+	</script>
 </body>
 </html>

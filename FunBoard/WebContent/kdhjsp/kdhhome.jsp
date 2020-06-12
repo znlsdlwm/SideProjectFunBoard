@@ -7,11 +7,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>JSP 웹사이트</title>
 </head>
 <body>
+
 	<c:if test="${not empty login}">
-		<h1>${login.id} 님 환영합니다.</h1>
+		<h1>${login.id}님환영합니다.</h1>
 	</c:if>
 	<c:if test="${empty login}">
 		<h1>KDH의 메인 홈 입니다.</h1>
@@ -26,13 +27,16 @@
 	<a href="list.kdh">회원목록</a>
 	<br>
 	<br>
-	<a href="calculator.kdh"> KDH의 계산기 </a><br>
-	<a href="listboard.kdh"> 게시판 </a><br>
+	<a href="calculator.kdh"> KDH의 계산기 </a>
+	<br>
+	<a href="listboard.kdh"> 게시판 </a>
+	<br>
 
 	<br>
 	<br>
 	<br>
 	<br>
 	<a href="home.main">모두의 메인으로</a>
+	
 </body>
 </html>

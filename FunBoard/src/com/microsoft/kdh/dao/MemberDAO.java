@@ -69,7 +69,27 @@ public class MemberDAO {
 		}
 		return list;
 	}
-
+	public boolean idCheck(String id) {
+		boolean idCheck = true;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "select * from member where id = ?";
+		try {
+			conn = dataFactory.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				idCheck=false;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeAll(rs, pstmt, conn);
+		}
+		return idCheck;
+	}
 	public boolean login(LoginDTO loginDTO) {
 		boolean isUser = false;
 		Connection conn = null;
