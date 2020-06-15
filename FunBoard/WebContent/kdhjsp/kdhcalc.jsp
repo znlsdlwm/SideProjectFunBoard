@@ -60,7 +60,6 @@
 			</form>
 		</div>
 	</nav>
-	<hr>
 	<form action="calculator.kdh" method="post">
 	<table>
 			<tr>
