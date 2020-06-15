@@ -13,37 +13,44 @@
 <link rel="stylesheet" href="./css/bootstrap.css">
 <link rel="stylesheet" href="../css/bootstrap.css">
 <style type="text/css">
-.listBoardHome:link{
-text-decoration: none;
+.listBoardHome:link {
+	text-decoration: none;
 }
-.listBoardHome{
-font-size: 37px;
-display: block;
-    position: relative;
-    top: -33px;
+
+.listBoardHome {
+	font-size: 37px;
+	display: block;
+	position: relative;
+	top: -33px;
 }
-#listBoardHomeDiv{
-height: 100px;
-margin-bottom: 0px;
-padding: 50px 24px 52px 18px;
+
+#listBoardHomeDiv {
+	height: 100px;
+	margin-bottom: 0px;
+	padding: 50px 24px 52px 18px;
 }
-#listBoardTableDiv{
-padding: 0px 32px 0px 32px;
+
+#listBoardTableDiv {
+	padding: 0px 32px 0px 32px;
 }
-.board{
-text-align: center;
+
+.board {
+	text-align: center;
 }
-.board_th_num{
-width: 50px;
-height: 26px;
-text-align: center;
+
+.board_th_num {
+	width: 50px;
+	height: 26px;
+	text-align: center;
 }
-.board_td_num{
-font-size: 11px;
-text-align: center;
+
+.board_td_num {
+	font-size: 11px;
+	text-align: center;
 }
-#board_td_title{
-text-align: left;
+
+#board_td_title {
+	text-align: left;
 }
 </style>
 </head>
@@ -107,7 +114,8 @@ text-align: left;
 			<c:forEach items="${list}" var="dto">
 				<tr>
 					<td class="board_td_num">${dto.num}</td>
-					<td id="board_td_title" width="300px"><c:forEach begin="1" end="${dto.repIndent}">
+					<td id="board_td_title" width="300px"><c:forEach begin="1"
+							end="${dto.repIndent}">
 						&nbsp;&nbsp;
 					</c:forEach><a href="readboard.kdh?num=${dto.num}"> ${dto.title} </a></td>
 					<td>${dto.writer}</td>
@@ -122,24 +130,34 @@ text-align: left;
 			</c:forEach>
 		</table>
 	</div>
+	<ul class="pagination">
 		<c:if test="${to.curPage>1}">
-			<a href="listboard.kdh?query=${query}&curPage=${1}">처음으로</a>&nbsp;
-	</c:if>
+			<li class="page-item"><a class="page-link"
+				href="listboard.kdh?query=${query}&curPage=${1}">처음으로</a></li>
+		</c:if>
 		<c:if test="${to.beginPageNum>1}">
-			<a
-				href="listboard.kdh?query=${query}&curPage=${to.curPage-to.perPage}">이전</a>&nbsp;
-	</c:if>
+			<li class="page-item"><a class="page-link"
+				href="listboard.kdh?query=${query}&curPage=${to.curPage-to.perPage}">이전</a></li>
+		</c:if>
 		<c:forEach begin="${to.beginPageNum}" end="${to.stopPageNum}"
 			var="idx">
-			<a href="listboard.kdh?query=${query}&curPage=${idx}">${idx}</a>&nbsp;&nbsp;
+			<c:if test="${idx==to.curPage}">
+				<li class="page-item active"><a class="page-link"
+					href="listboard.kdh?query=${query}&curPage=${idx}">${idx}</a></li>
+			</c:if>
+			<c:if test="${idx!=to.curPage}">
+				<li class="page-item"><a class="page-link"
+					href="listboard.kdh?query=${query}&curPage=${idx}">${idx}</a></li>
+			</c:if>	
 		</c:forEach>
 		<c:if test="${to.stopPageNum<to.totalPage}">
-			<a
-				href="listboard.kdh?query=${query}&curPage=${to.curPage+to.perPage}">다음</a>&nbsp;
-	</c:if>
+			<li class="page-item"><a class="page-link"
+				href="listboard.kdh?query=${query}&curPage=${to.curPage+to.perPage}">다음</a></li>
+		</c:if>
 		<c:if test="${to.curPage<to.totalPage}">
-			<a href="listboard.kdh?query=${query}&curPage=${to.totalPage}">끝으로</a>&nbsp;
-	</c:if>
-
+			<li class="page-item"><a class="page-link"
+				href="listboard.kdh?query=${query}&curPage=${to.totalPage}">끝으로</a></li>
+		</c:if>
+	</ul>
 </body>
 </html>
