@@ -33,7 +33,7 @@ public class BoardDAO {
 	public PageTO searchWriter(int curPage, String query) {
 		PageTO to = new PageTO(curPage);
 		List<BoardDTO> list = new ArrayList<BoardDTO>();
-		String sql = "select * from (" + "select rownum rnum, num, title, writer, writeday, readcnt, repIndent from ("
+		String sql = "select * from (" + "select rownum rnum, num, title, writer, writeday, readcnt, repIndent, repRoot, repStep from ("
 				+ "select * from board where writer like ? order by repRoot desc , repStep)) "
 				+ "where rnum>=? and rnum<=?";
 		Connection conn = null;
@@ -55,7 +55,8 @@ public class BoardDAO {
 				String writeDay = rs.getString("writeday");
 				int readcnt = rs.getInt("readcnt");
 				int repIndent = rs.getInt("repIndent");
-				list.add(new BoardDTO(num, writer, title, null, writeDay, readcnt, -1, -1, repIndent));
+				
+				list.add(new BoardDTO(num, writer, title, null, writeDay, readcnt, rs.getInt("repRoot"), rs.getInt("repStep"), repIndent));
 			}
 			to.setList(list);
 		} catch (Exception e) {
@@ -69,7 +70,7 @@ public class BoardDAO {
 	public PageTO searchTitle(int curPage, String query) {
 		PageTO to = new PageTO(curPage);
 		List<BoardDTO> list = new ArrayList<BoardDTO>();
-		String sql = "select * from (" + "select rownum rnum, num, title, writer, writeday, readcnt, repIndent from ("
+		String sql = "select * from (" + "select rownum rnum, num, title, writer, writeday, readcnt, repIndent, repRoot, repStep from ("
 				+ "select * from board where title like ? order by repRoot desc , repStep)) "
 				+ "where rnum>=? and rnum<=?";
 		Connection conn = null;
@@ -91,7 +92,7 @@ public class BoardDAO {
 				String writeDay = rs.getString("writeday");
 				int readcnt = rs.getInt("readcnt");
 				int repIndent = rs.getInt("repIndent");
-				list.add(new BoardDTO(num, writer, title, null, writeDay, readcnt, -1, -1, repIndent));
+				list.add(new BoardDTO(num, writer, title, null, writeDay, readcnt, rs.getInt("repRoot"), rs.getInt("repStep"), repIndent));
 			}
 			to.setList(list);
 		} catch (Exception e) {
@@ -177,8 +178,7 @@ public class BoardDAO {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "select * from (" + "select rownum rnum from ("
-				+ "select * from board order by repRoot desc , repStep)) " + "where writer=? and rnum=?";
+		String sql = "select * from (select num, writer from (select * from board order by repRoot desc , repStep)) where writer=? and num=?";
 		try {
 			conn = dataFactory.getConnection();
 			pstmt = conn.prepareStatement(sql);
@@ -227,14 +227,15 @@ public class BoardDAO {
 		try {
 			conn = dataFactory.getConnection();
 			conn.setAutoCommit(false);
-			BoardDTO orgDTO = updateUI(orgnum);
+			BoardDTO orgDTO = getAllAsNum(conn, orgnum);
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, createNum(conn));
 			pstmt.setString(2, dto.getWriter());
 			pstmt.setString(3, titleRePlus(orgDTO.getRepIndent() + 1) + dto.getTitle());
 			pstmt.setString(4, dto.getContent());
 			pstmt.setInt(5, orgDTO.getRepRoot());
-			pstmt.setInt(6, orgDTO.getRepStep() + 1);
+			int replyStep = replyStep(conn, orgDTO.getRepRoot(), orgDTO.getRepIndent());
+			pstmt.setInt(6, replyStep + 1);
 			pstmt.setInt(7, orgDTO.getRepIndent() + 1);
 			pstmt.executeUpdate();
 			stepPlus1(conn, orgDTO);
@@ -246,7 +247,49 @@ public class BoardDAO {
 			clossAll(pstmt, conn);
 		}
 	}
-
+	public BoardDTO getAllAsNum(Connection conn, int orgnum) {
+		BoardDTO dto = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "select * from board where num=?";
+		try {
+			conn = dataFactory.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, orgnum);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				dto = new BoardDTO(rs.getInt("num"), rs.getString("writer"), rs.getString("title"),
+						rs.getString("content"), null, rs.getInt("readcnt"), rs.getInt("repRoot"), rs.getInt("repStep"),
+						rs.getInt("repIndent"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			clossAll(rs, pstmt, null);
+		}
+		return dto;
+	}
+	private int replyStep(Connection conn, int orgRepRoot, int orgRepIndent) {
+		int replyStep = -1;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "select max(repStep) from board where repRoot=? and repIndent=?";
+		try {
+			conn = dataFactory.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(orgRepRoot, 1);
+			int repindent = orgRepIndent+1;
+			pstmt.setInt(repindent, 2);
+			rs = pstmt.executeQuery();
+			if(rs.next())
+				replyStep = rs.getInt(1);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			clossAll(rs, pstmt, null);
+		}
+		return replyStep;
+	}
 	private void stepPlus1(Connection conn, BoardDTO orgDTO) {
 		PreparedStatement pstmt = null;
 		String sql = "update board set repstep=repstep+1 where repRoot=? and repStep>?";
@@ -307,29 +350,7 @@ public class BoardDAO {
 		}
 	}
 
-	public BoardDTO updateUI(int num) {
-		BoardDTO dto = null;
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		String sql = "select * from board where num=?";
-		try {
-			conn = dataFactory.getConnection();
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, num);
-			rs = pstmt.executeQuery();
-			if (rs.next()) {
-				dto = new BoardDTO(rs.getInt("num"), rs.getString("writer"), rs.getString("title"),
-						rs.getString("content"), null, rs.getInt("readcnt"), rs.getInt("repRoot"), rs.getInt("repStep"),
-						rs.getInt("repIndent"));
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			clossAll(rs, pstmt, conn);
-		}
-		return dto;
-	}
+	
 
 	
 

@@ -12,7 +12,7 @@
 <body>
 	<h1>답글 작성</h1>
 	<form action="replyboard.kdh" method="post">
-		<input type="hidden" name="num" value="${dto.num}" readonly="readonly">
+		<input type="hidden" name="num" value="${param.num}" readonly="readonly">
 		title: <input type="text" name="title" required="required"><br>
 		writer: <input type="text" name="writer" value="${login.id}" readonly="readonly"><br>
 		content: <br>
