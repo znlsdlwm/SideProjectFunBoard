@@ -1,7 +1,8 @@
 select * from member
 select * from board
-select * from v_listBoard
-select max(repStep) from board where repRoot=213 and repIndent=0
+
+select NVL(max(repStep), 0) from board where repRoot = 700
+select NVL(max(repStep), 0) from board where repRoot= 207 and (repIndent between 0 and 1)
 select * from board where num = 213
 select * from board order by repRoot desc, repStep
 
@@ -15,4 +16,4 @@ select count(num) from board where title like '%%'
 select * from (select rownum rnum writer from (
 				select * from board order by repRoot desc , repStep)) where writer='m003' and rnum=1
 				
-select * from (select num, writer from (select * from board order by repRoot desc , repStep)) where writer='m003' and num=217
+select * from (select num, writer from (select * from board order by repRoot desc , repStep)) where writer='m003'

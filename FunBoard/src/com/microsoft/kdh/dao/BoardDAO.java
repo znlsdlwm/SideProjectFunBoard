@@ -147,7 +147,7 @@ public class BoardDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			clossAll(pstmt, null);
+			clossAll(null, pstmt, null);
 		}
 	}
 	
@@ -214,7 +214,7 @@ public class BoardDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			clossAll(pstmt, conn);
+			clossAll(null, pstmt, conn);
 		}
 	}
 	
@@ -232,28 +232,31 @@ public class BoardDAO {
 			pstmt.setInt(1, createNum(conn));
 			pstmt.setString(2, dto.getWriter());
 			pstmt.setString(3, titleRePlus(orgDTO.getRepIndent() + 1) + dto.getTitle());
+			
 			pstmt.setString(4, dto.getContent());
 			pstmt.setInt(5, orgDTO.getRepRoot());
-			int replyStep = replyStep(conn, orgDTO.getRepRoot(), orgDTO.getRepIndent());
-			pstmt.setInt(6, replyStep + 1);
+			
+			int step = getMaxStep(conn, orgDTO);
+			pstmt.setInt(6, step);
+			
 			pstmt.setInt(7, orgDTO.getRepIndent() + 1);
+			repStepOthersPlus1(conn, orgDTO, step);
 			pstmt.executeUpdate();
-			stepPlus1(conn, orgDTO);
 			isOk = true;
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			transaction(conn, isOk);
-			clossAll(pstmt, conn);
+			clossAll(null, pstmt, conn);
 		}
 	}
+
 	public BoardDTO getAllAsNum(Connection conn, int orgnum) {
 		BoardDTO dto = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String sql = "select * from board where num=?";
 		try {
-			conn = dataFactory.getConnection();
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, orgnum);
 			rs = pstmt.executeQuery();
@@ -269,20 +272,22 @@ public class BoardDAO {
 		}
 		return dto;
 	}
-	private int replyStep(Connection conn, int orgRepRoot, int orgRepIndent) {
+	private int getMaxStep(Connection conn, BoardDTO orgDTO) {
 		int replyStep = -1;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "select max(repStep) from board where repRoot=? and repIndent=?";
+		String sql = "select NVL(max(repStep), -99) from board where repRoot= ? and repIndent =? and repstep>?";
 		try {
-			conn = dataFactory.getConnection();
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(orgRepRoot, 1);
-			int repindent = orgRepIndent+1;
-			pstmt.setInt(repindent, 2);
+			pstmt.setInt(1, orgDTO.getRepRoot());
+			pstmt.setInt(2, orgDTO.getRepIndent()+1);
+			pstmt.setInt(3, orgDTO.getRepStep());
 			rs = pstmt.executeQuery();
 			if(rs.next())
 				replyStep = rs.getInt(1);
+			if(replyStep==-99)
+				replyStep = orgDTO.getRepStep()+1;
+			System.out.println(replyStep);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -290,19 +295,19 @@ public class BoardDAO {
 		}
 		return replyStep;
 	}
-	private void stepPlus1(Connection conn, BoardDTO orgDTO) {
+	private void repStepOthersPlus1(Connection conn, BoardDTO orgDTO, int step) {
 		PreparedStatement pstmt = null;
-		String sql = "update board set repstep=repstep+1 where repRoot=? and repStep>?";
+		String sql = "update board set repstep=repstep+1 where repRoot=? and repStep>=?";
 		try {
-			conn = dataFactory.getConnection();
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, orgDTO.getRepRoot());
-			pstmt.setInt(2, orgDTO.getRepStep());
+			pstmt.setInt(2, step);
+			System.out.println("step>?:"+step);
 			pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			clossAll(pstmt, null);
+			clossAll(null, pstmt, null);
 		}
 	}
 
@@ -327,7 +332,7 @@ public class BoardDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			clossAll(pstmt, conn);
+			clossAll(null, pstmt, conn);
 		}
 	}
 
@@ -346,7 +351,7 @@ public class BoardDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			clossAll(pstmt, conn);
+			clossAll(null, pstmt, conn);
 		}
 	}
 
@@ -423,17 +428,6 @@ public class BoardDAO {
 			} else {
 				conn.rollback();
 			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
-	private void clossAll(PreparedStatement pstmt, Connection conn) {
-		try {
-			if (pstmt != null)
-				pstmt.close();
-			if (conn != null)
-				conn.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -20,10 +20,12 @@ public class ListBoardCommand implements Command {
 		String query = request.getParameter("query");
 		String option = request.getParameter("option");
 		BoardDAO dao = new BoardDAO();
+		
 		if(query==null) {
 			query="";
 		}
 		int curPage = limitPage(sCurPage);
+		
 		PageTO to = dao.searchTitle(curPage, query);
 		
 		if(option!=null && option.equals("2")) {
