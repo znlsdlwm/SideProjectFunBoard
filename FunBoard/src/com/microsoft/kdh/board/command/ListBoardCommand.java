@@ -18,24 +18,21 @@ public class ListBoardCommand implements Command {
 			throws ServletException, IOException {
 		String sCurPage = request.getParameter("curPage");
 		String query = request.getParameter("query");
-		String op = request.getParameter("option");
+		String option = request.getParameter("option");
 		BoardDAO dao = new BoardDAO();
 		if(query==null) {
 			query="";
 		}
 		int curPage = limitPage(sCurPage);
-		PageTO to = dao.searchQuery(curPage, query);
-			
-		if(op!=null && op.equals("2")) {
-			to = dao.searchQueryOption(curPage, query);
+		PageTO to = dao.searchTitle(curPage, query);
+		
+		if(option!=null && option.equals("2")) {
+			to = dao.searchWriter(curPage, query);
 		}
 		
-//		PageTO to = dao.searchQuery(curPage, query);
-//		PageTO to = dao.searchQueryOption(curPage, query, option);
-//		if(curPage>to.getTotalPage())
-//			curPage = to.getTotalPage();
-//		to = dao.searchQuery(curPage, query);
-//		to = dao.searchQueryOption(curPage, query, option);
+		if(to.getCurPage()>to.getTotalPage()) {
+			to.setCurPage(to.getTotalPage());
+		}
 		request.setAttribute("list", to.getList());
 		request.setAttribute("to", to);
 		request.setAttribute("query", query);
