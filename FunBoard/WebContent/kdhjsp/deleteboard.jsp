@@ -11,7 +11,7 @@
 </head>
 <body>
 	<form action="deleteboard.kdh" method="post">
-		<input type="hidden" name="num" value="${dto.num}" readonly="readonly">
+		<input type="hidden" name="num" value="${param.num}" readonly="readonly">
 		정말로 삭제하시겠습니까? <input type="submit" value="예">
 	</form>
 	<form action="listboard.kdh" method="post">
