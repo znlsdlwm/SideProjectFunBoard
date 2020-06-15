@@ -377,29 +377,6 @@ public class BoardDAO {
 		return num;
 	}
 
-	private void clossAll(PreparedStatement pstmt, Connection conn) {
-		try {
-			if (pstmt != null)
-				pstmt.close();
-			if (conn != null)
-				conn.close();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
-	private void clossAll(ResultSet rs, PreparedStatement pstmt, Connection conn) {
-		try {
-			if (rs != null)
-				rs.close();
-			if (pstmt != null)
-				pstmt.close();
-			if (conn != null)
-				conn.close();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
 
 	public PageTO page(int curPage) {
 		PageTO to = new PageTO(curPage);
@@ -494,5 +471,29 @@ public class BoardDAO {
 		}
 
 		return amount;
+	}
+
+	private void clossAll(PreparedStatement pstmt, Connection conn) {
+		try {
+			if (pstmt != null)
+				pstmt.close();
+			if (conn != null)
+				conn.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	private void clossAll(ResultSet rs, PreparedStatement pstmt, Connection conn) {
+		try {
+			if (rs != null)
+				rs.close();
+			if (pstmt != null)
+				pstmt.close();
+			if (conn != null)
+				conn.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 }
