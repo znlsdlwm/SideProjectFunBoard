@@ -50,7 +50,7 @@
 	</div>
 	<div class="jumbotron">
 		<h1 class="listBoardHome">게시글 작성</h1>
-		<form action="insertboard.kdh">
+		<form action="insertboard.kdh" method="post">
 			<input type="text" readonly="readonly" value="${login.id}"><br>
 			<br> <input class="col-sm-4" type="text" name="title"
 				placeholder="제목을 입력해 주세요." required="required"> <br>
