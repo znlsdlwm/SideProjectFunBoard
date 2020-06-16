@@ -16,7 +16,7 @@ public class DeleteUICommentBoardCommand implements Command {
 			throws ServletException, IOException {
 		String c_num = request.getParameter("c_num");
 		request.setAttribute("c_num", c_num);
-		return new CommandAction(false, "/kdhjsp/deleteuiboard.jsp");
+		return new CommandAction(false, "/kdhjsp/deleteuicommentboard.jsp");
 	}
 
 }
