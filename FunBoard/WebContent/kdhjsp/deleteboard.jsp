@@ -10,23 +10,8 @@
 <meta name="viewport" content="width=device-width" initial-scale="1">
 <title>JSP 웹사이트</title>
 <link rel="stylesheet" href="./css/bootstrap.css">
+<link rel="stylesheet" href="./css/listboard.css">
 <link rel="stylesheet" href="../css/bootstrap.css">
-<style type="text/css">
-.listBoardHome:link{
-text-decoration: none;
-}
-.listBoardHome{
-font-size: 37px;
-display: block;
-    position: relative;
-    top: -33px;
-}
-#listBoardHomeDiv{
-height: 100px;
-margin-bottom: 0px;
-padding: 50px 24px 52px 18px;
-}
-</style>
 </head>
 <body>
 <nav class="navbar navbar-expand navbar-dark bg-dark" id="navbars01">
@@ -63,12 +48,14 @@ padding: 50px 24px 52px 18px;
 	<div class="jumbotron" id="listBoardHomeDiv">
 		<a class="listBoardHome" href="listboard.kdh" role="button">기본 게시판</a>
 	</div>
-	<form action="deleteboard.kdh" method="post">
-		<input type="hidden" name="num" value="${param.num}" readonly="readonly">
-		정말로 삭제하시겠습니까? <input type="submit" value="예">
-	</form>
-	<form action="listboard.kdh" method="post">
-		<input type="submit" value="아니오">
-	</form>
+	<div class="jumbotron">
+		<form action="deleteboard.kdh" method="post">
+			<input type="hidden" name="num" value="${param.num}"
+				readonly="readonly"> <p><b>정말로 삭제하시겠습니까?</b></p> 
+				<input class="btn btn-success btn-lg" type="submit"
+				value="예">
+			<a class="btn btn-danger btn-lg" href="listboard.kdh" role="button">아니오</a>
+		</form>
+	</div>
 </body>
 </html>
