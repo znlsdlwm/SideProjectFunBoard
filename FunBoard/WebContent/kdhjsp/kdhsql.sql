@@ -16,7 +16,7 @@ c_Indent number(4),
 b_num not null,
 constraint fk_bnum foreign key(b_num) references board(num)
 )
-
+delete from B_COMMENT
 alter table b_comment add constraint fk_b_num foreign key(num) references board
 ALTER TABLE board add(
 good number(4) default 0,

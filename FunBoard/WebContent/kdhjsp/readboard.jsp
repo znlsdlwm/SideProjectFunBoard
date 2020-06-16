@@ -93,8 +93,7 @@
 					</div>
 				</div>
 				<div class="col-sm-10">
-					<textarea class="col-sm-12" rows="3" name="c_content" placeholder="내용을 입력해 주세요">
-					</textarea>
+					<textarea class="col-sm-12" rows="3" name="c_content" placeholder="내용을 입력해 주세요"></textarea>
 				</div> 
 			</div>
 			<div class="row fr">
@@ -110,27 +109,21 @@
 	</div>
 	<div id="newjumbotron">
 		<c:forEach items="${c_list}" var="c">
-
+			${c.c_num}
+			${c.c_writer}
+			${c.c_content}
+			${c.c_password} 
+			${c.c_writeday} 
+			${c.c_good} 
+			${c.c_bad}
+			${c.c_warning} 
+			${c.c_root} 
+			${c.c_step}
+			${c.c_indent}<br>
+			<form action="deleteuicommentboard.kdh" method="post">
+				<input class="btn btn-danger btn-sm" type="submit" value="❌">
+			</form>
 		</c:forEach>
 	</div>
-	<script type="text/javascript">
-		$(document).ready(function() {
-			$("#checker").click(function(event) {
-				event.preventDefault();
-				var id = $("#id").val();
-				$.ajax({
-					type : "get",
-					url : "logidcheck.kdh",
-					data : {
-						id : id
-					},
-					dataType : "text",
-					success : function(result) {
-						$("p").text(result);
-					}
-				});
-			});
-		});
-	</script>
 </body>
 </html>

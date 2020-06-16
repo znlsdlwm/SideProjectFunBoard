@@ -1,4 +1,4 @@
-package com.microsoft.kdh.board.command;
+package com.microsoft.kdh.comment.command;
 
 import java.io.IOException;
 

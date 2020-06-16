@@ -7,7 +7,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.microsoft.kdh.board.command.InsertCommentBoardCommand;
 import com.microsoft.kdh.board.command.DeleteBoardCommand;
 import com.microsoft.kdh.board.command.DeleteBoardUICommand;
 import com.microsoft.kdh.board.command.InsertBoardCommand;
@@ -26,6 +25,8 @@ import com.microsoft.kdh.command.InsertCommand;
 import com.microsoft.kdh.command.InsertUICommand;
 import com.microsoft.kdh.command.KDHHomeCommand;
 import com.microsoft.kdh.command.ListCommand;
+import com.microsoft.kdh.comment.command.DeleteUICommentBoardCommand;
+import com.microsoft.kdh.comment.command.InsertCommentBoardCommand;
 import com.microsoft.kdh.log.command.LoginCommand;
 import com.microsoft.kdh.log.command.LoginUICommand;
 import com.microsoft.kdh.log.command.LogoutCommand;
@@ -98,6 +99,8 @@ public class FrontController extends HttpServlet {
 			com = new ReplyeBoardCommand();
 		} else if (sp.equalsIgnoreCase("/insertcommentboard.kdh")) {
 			com = new InsertCommentBoardCommand();
+		} else if (sp.equalsIgnoreCase("/deleteuicommentboard.kdh")) {
+			com = new DeleteUICommentBoardCommand();
 		} else {
 			System.out.println("제공하지 않는 서비스 입니다.");
 		}

@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -40,9 +42,9 @@ public class CommentDAO {
 			pstmt.setInt(5, 0);
 			pstmt.setInt(6, 0);
 			pstmt.setInt(7, 0);
-			pstmt.setInt(8, dto.getC_root());
-			pstmt.setInt(9, dto.getC_step());
-			pstmt.setInt(10, dto.getC_indent());
+			pstmt.setInt(8, createC_Num(conn));
+			pstmt.setInt(9, 0);
+			pstmt.setInt(10, 0);
 			pstmt.setInt(11, dto.getB_num());
 			pstmt.executeUpdate();
 		} catch (SQLException e) {
@@ -71,19 +73,19 @@ public class CommentDAO {
 		return c_num;
 	}
 	// Read
-	public CommentDTO readComment(int c_num) {
-		CommentDTO dto = null;
+	public List<CommentDTO> listComment(int b_num) {
+		List<CommentDTO> c_list = new ArrayList<CommentDTO>();
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "select * from b_comment where c_num=?";
+		String sql = "select * from b_comment where b_num=? order by c_root desc , c_step";
 		try {
 			conn = dataFactory.getConnection();
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, c_num);
+			pstmt.setInt(1, b_num);
 			rs = pstmt.executeQuery();
-			if(rs.next()) {
-				dto = new CommentDTO(c_num, 
+			while(rs.next()) {
+				c_list.add(new CommentDTO(rs.getInt("c_num"), 
 						rs.getString("c_writer"),
 						rs.getString("c_content"),
 						rs.getString("c_password"), 
@@ -94,14 +96,14 @@ public class CommentDAO {
 						rs.getInt("c_root"), 
 						rs.getInt("c_step"),
 						rs.getInt("c_indent"),
-						rs.getInt("b_num"));
+						b_num));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			clossAll(rs, pstmt, conn);
 		}
-		return dto;
+		return c_list;
 	}
 	
 	private void transaction(Connection conn, boolean isOk) {
