@@ -47,3 +47,40 @@ float: right;
 margin-left: 3px;
 width: 120px;
 }
+#mg-bottom_0{
+	margin-bottom: 0px;	
+}
+#mg-right_32{
+	margin-right: 32px;	
+}
+.mg-auto_10{
+	margin: 10px auto;	
+}
+#pd-top-10{
+	padding-top: 10px;
+}
+#pd-bottom-10{
+	padding-bottom: 10px;
+}
+.pd-bottom-16{
+	padding-bottom: 16px;
+}
+.pd-bottom-32{
+	padding-bottom: 32px;
+}
+.pd-bottom-64{
+	padding-bottom: 64px;
+}
+.pd-top-16{
+	padding-top: 16px;
+}
+.pd-top-32{
+	padding-top: 32px;
+}
+.pd-top-64{
+	padding-top: 64px;
+}
+#newjumbotron{
+background-color: #e9ecef;
+border-radius: 0.3rem;
+}

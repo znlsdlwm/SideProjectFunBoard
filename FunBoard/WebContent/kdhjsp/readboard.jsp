@@ -11,8 +11,10 @@
 <title>JSP 웹사이트</title>
 <link rel="stylesheet" href="./css/bootstrap.css">
 <link rel="stylesheet" href="./css/listboard.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="./js/bootstrap.min.js"></script>
 </head>
 <body>
@@ -47,23 +49,87 @@
 			</form>
 		</div>
 	</nav>
-		<div class="jumbotron" id="listBoardHomeDiv">
+	<div class="jumbotron" id="listBoardHomeDiv">
 		<a class="listBoardHome" href="listboard.kdh" role="button">기본 게시판</a>
 	</div>
-	<div class="jumbotron">
-		<pre>
-	<b>제목: ${dto.title} </b> 글번호: ${dto.num} 
-	작성자: ${dto.writer} 작성날짜: ${dto.writeDay} 조회수: ${dto.readcnt}
-	
-	${dto.content}
-	</pre>
-	<a class="fl btn btn-info btn-lg" role="button" href="replyboardui.kdh?num=${dto.num}">답글</a>
-	<a class="fl btn btn-info btn-lg" role="button" href="listboard.kdh">목록</a>
-	<c:if test="${login.id eq dto.writer}">
-		<a class="fr btn btn-secondary btn-lg" role="button" href="updateboardui.kdh?num=${dto.num}">수정</a>
-		<a class="fr btn btn-secondary btn-lg" role="button" href="deleteboardui.kdh?num=${dto.num}">삭제</a>
-	</c:if>
+	<div class="jumbotron" id="mg-bottom_0">
+		<div class="mg-auto_10">
+			<div><b>제목: ${dto.title}</b></div>  
+			<div class="fr mg-right_32">글번호: ${dto.num} </div>
+			<div class="fl">작성자: ${dto.writer}</div>
+			<div class="fr" style="margin-right: 10%;">조회수: ${dto.readcnt}</div>
+			<div class="fr" style="margin-right: 10%;">작성날짜: ${dto.writeDay}</div>
+		</div>
 	</div>
-	
+	<div id="newjumbotron" class="pd-bottom-32 pd-top-32">
+		<div style="margin-left: 32px;">${dto.content}</div>
+	</div>
+	<div id="newjumbotron" class="pd-bottom-64 pd-top-16">	
+		<div class="fl">
+			<div class="container">
+				<a class="fl btn btn-info btn-lg" role="button"
+					href="replyboardui.kdh?num=${dto.num}">답글</a> <a
+					class="fl btn btn-info btn-lg" role="button" href="listboard.kdh">목록</a>
+				<c:if test="${login.id eq dto.writer}">
+					<a class="fr btn btn-secondary btn-lg" role="button"
+						href="updateboardui.kdh?num=${dto.num}">수정</a>
+					<a class="fr btn btn-secondary btn-lg" role="button"
+						href="deleteboardui.kdh?num=${dto.num}">삭제</a>
+				</c:if>
+			</div>
+		</div>
+	</div>
+	<div id="newjumbotron" class="pd-bottom-32 pd-top-32">
+		<div class="container">
+			<form action="" method="post">
+			<div class="row">
+				<div class="col-sm-4">
+					<div class="row">
+						<input type="text" name="c_writer" placeholder="닉네임">
+					</div>
+					<div class="row">
+						<input type="password" name="c_password" placeholder="비밀번호">
+					</div>
+				</div>
+				<div class="col-sm-8">
+					<textarea class="col-sm-12" rows="3" name="c_content" placeholder="내용을 입력해 주세요">
+					</textarea>
+				</div> 
+			</div>
+			<div class="row fr">
+				<div class="col">
+					<input type="submit" value="확인">
+				</div>
+				<div class="col">
+					<a href="#">취소</a>
+				</div>
+			</div>
+			</form>
+		</div>
+	</div>
+	<div id="newjumbotron">
+		<c:forEach items="${c_list}" var="c">
+
+		</c:forEach>
+	</div>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$("#checker").click(function(event) {
+				event.preventDefault();
+				var id = $("#id").val();
+				$.ajax({
+					type : "get",
+					url : "logidcheck.kdh",
+					data : {
+						id : id
+					},
+					dataType : "text",
+					success : function(result) {
+						$("p").text(result);
+					}
+				});
+			});
+		});
+	</script>
 </body>
 </html>

@@ -9,20 +9,17 @@ c_password varchar2(8),
 c_writeday DATE default sysdate,
 c_good number(4) default 0,
 c_bad number(4) default 0,
+c_waning number(4) default 0,
 c_Root number(4),
 c_Step number(4),
 c_Indent number(4)
 )
+
 ALTER TABLE board add(
 good number(4) default 0,
 bad number(4) default 0
 )
 
-create table board_info(
-b_info_num bin number(5) not null primary key,
-b_info_good
-b_info_bad
-)
 
 select * from board order by repRoot desc, repStep
 
