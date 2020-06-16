@@ -250,7 +250,6 @@ public class BoardDAO {
 			clossAll(null, pstmt, conn);
 		}
 	}
-
 	public BoardDTO getAllAsNum(Connection conn, int orgnum) {
 		BoardDTO dto = null;
 		PreparedStatement pstmt = null;
@@ -287,7 +286,6 @@ public class BoardDAO {
 				replyStep = rs.getInt(1);
 			if(replyStep==-99)
 				replyStep = orgDTO.getRepStep()+1;
-			System.out.println(replyStep);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -302,7 +300,6 @@ public class BoardDAO {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, orgDTO.getRepRoot());
 			pstmt.setInt(2, step);
-			System.out.println("step>?:"+step);
 			pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -310,7 +307,6 @@ public class BoardDAO {
 			clossAll(null, pstmt, null);
 		}
 	}
-
 	private String titleRePlus(int repIndent) {
 		String result = "";
 		for (int i = 0; i < repIndent; i++) {
@@ -319,7 +315,7 @@ public class BoardDAO {
 		return result;
 	}
 
-	
+	// Delete
 	public void delete(int num) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
