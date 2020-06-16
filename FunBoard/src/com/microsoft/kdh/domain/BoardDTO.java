@@ -14,7 +14,6 @@ public class BoardDTO implements Serializable{
 	private int repStep;
 	private int repIndent;
 	public BoardDTO() {
-		// TODO Auto-generated constructor stub
 	}
 	public BoardDTO(int num, String writer, String title, String content, String writeDay, int readcnt, int repRoot,
 			int repStep, int repIndent) {
