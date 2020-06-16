@@ -37,3 +37,13 @@
 #board_td_title {
 	text-align: left;
 }
+.fl{
+float: left;
+}
+.fr{
+float: right; 
+}
+.btn{
+margin-left: 3px;
+width: 120px;
+}
