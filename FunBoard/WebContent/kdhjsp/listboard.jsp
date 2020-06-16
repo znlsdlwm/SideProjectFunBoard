@@ -11,48 +11,8 @@
 <meta name="viewport" content="width=device-width" initial-scale="1">
 <title>JSP 웹사이트</title>
 <link rel="stylesheet" href="./css/bootstrap.css">
+<link rel="stylesheet" href="./css/listboard.css">
 <link rel="stylesheet" href="../css/bootstrap.css">
-<style type="text/css">
-.listBoardHome:link {
-	text-decoration: none;
-}
-
-.listBoardHome {
-	font-size: 37px;
-	display: block;
-	position: relative;
-	top: -33px;
-}
-
-#listBoardHomeDiv {
-	height: 100px;
-	margin-bottom: 0px;
-	padding: 50px 24px 52px 18px;
-}
-
-#listBoardTableDiv {
-	padding: 0px 32px 0px 32px;
-}
-
-.board {
-	text-align: center;
-}
-
-.board_th_num {
-	width: 50px;
-	height: 26px;
-	text-align: center;
-}
-
-.board_td_num {
-	font-size: 11px;
-	text-align: center;
-}
-
-#board_td_title {
-	text-align: left;
-}
-</style>
 </head>
 <body>
 	<nav class="navbar navbar-expand navbar-dark bg-dark" id="navbars01">
