@@ -25,6 +25,30 @@ public class CommentDAO {
 			e.printStackTrace();
 		}
 	}
+	public void delete(int c_num) {
+		
+	}
+	public boolean passwordCheck(String c_num, String password) {
+		boolean isOk = false;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "select * from b_comment where c_num=? and c_password=?";
+		try {
+			conn = dataFactory.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, c_num);
+			pstmt.setString(2, password);
+			rs = pstmt.executeQuery();
+			if(rs.next())
+				isOk = true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			clossAll(null, pstmt, conn);
+		}
+		return isOk;
+	}
 	//Create
 	public void insertComment(CommentDTO dto) {
 		Connection conn = null;

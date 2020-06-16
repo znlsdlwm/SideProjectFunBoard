@@ -25,6 +25,7 @@ import com.microsoft.kdh.command.InsertCommand;
 import com.microsoft.kdh.command.InsertUICommand;
 import com.microsoft.kdh.command.KDHHomeCommand;
 import com.microsoft.kdh.command.ListCommand;
+import com.microsoft.kdh.comment.command.DeleteCommentBoardCommand;
 import com.microsoft.kdh.comment.command.DeleteUICommentBoardCommand;
 import com.microsoft.kdh.comment.command.InsertCommentBoardCommand;
 import com.microsoft.kdh.log.command.LoginCommand;
@@ -101,6 +102,8 @@ public class FrontController extends HttpServlet {
 			com = new InsertCommentBoardCommand();
 		} else if (sp.equalsIgnoreCase("/deleteuicommentboard.kdh")) {
 			com = new DeleteUICommentBoardCommand();
+		} else if (sp.equalsIgnoreCase("/deletecommentboardcommand.kdh")) {
+			com = new DeleteCommentBoardCommand();
 		} else {
 			System.out.println("제공하지 않는 서비스 입니다.");
 		}

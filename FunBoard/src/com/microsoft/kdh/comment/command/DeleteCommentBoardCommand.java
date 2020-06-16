@@ -8,17 +8,21 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.microsoft.kdh.command.Command;
 import com.microsoft.kdh.command.CommandAction;
+import com.microsoft.kdh.dao.CommentDAO;
 
-public class DeleteUICommentBoardCommand implements Command {
+public class DeleteCommentBoardCommand implements Command {
 
 	@Override
 	public CommandAction execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String c_num = request.getParameter("c_num");
+		String c_Snum = request.getParameter("c_num");
 		String num = request.getParameter("num");
-		request.setAttribute("c_num", c_num);
-		request.setAttribute("num", num);
-		return new CommandAction(false, "/kdhjsp/deleteuicommentboard.jsp");
+		int c_num = -1;
+		if(c_Snum!=null)
+			c_num = Integer.parseInt(c_Snum);
+		CommentDAO dao = new CommentDAO();
+		dao.delete(c_num);
+		return new CommandAction(true, "readboard.kdh?num="+num);
 	}
 
 }
