@@ -81,9 +81,10 @@
 	</div>
 	<div id="newjumbotron" class="pd-bottom-32 pd-top-32">
 		<div class="container">
-			<form action="" method="post">
+			<form action="insertcommentboard.kdh" method="post">
+			<input type="hidden" name="num"  value="${param.num}" readonly="readonly">
 			<div class="row">
-				<div class="col-sm-4">
+				<div class="col-sm-2 fr">
 					<div class="row">
 						<input type="text" name="c_writer" placeholder="닉네임">
 					</div>
@@ -91,14 +92,14 @@
 						<input type="password" name="c_password" placeholder="비밀번호">
 					</div>
 				</div>
-				<div class="col-sm-8">
+				<div class="col-sm-10">
 					<textarea class="col-sm-12" rows="3" name="c_content" placeholder="내용을 입력해 주세요">
 					</textarea>
 				</div> 
 			</div>
 			<div class="row fr">
 				<div class="col">
-					<input type="submit" value="확인">
+					<input type="submit" value="등록">
 				</div>
 				<div class="col">
 					<a href="#">취소</a>
