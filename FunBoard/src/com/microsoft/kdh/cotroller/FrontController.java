@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.microsoft.kdh.board.command.InsertCommentBoardCommand;
 import com.microsoft.kdh.board.command.DeleteBoardCommand;
 import com.microsoft.kdh.board.command.DeleteBoardUICommand;
 import com.microsoft.kdh.board.command.InsertBoardCommand;
@@ -95,6 +96,8 @@ public class FrontController extends HttpServlet {
 			com = new ReplyeBoardUICommand();
 		} else if (sp.equalsIgnoreCase("/replyboard.kdh")) {
 			com = new ReplyeBoardCommand();
+		} else if (sp.equalsIgnoreCase("/insertcommentboard.kdh")) {
+			com = new InsertCommentBoardCommand();
 		} else {
 			System.out.println("제공하지 않는 서비스 입니다.");
 		}
