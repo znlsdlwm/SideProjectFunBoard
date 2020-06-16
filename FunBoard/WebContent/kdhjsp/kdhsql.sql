@@ -1,9 +1,29 @@
 select * from member
 select * from board
 
-select NVL(max(repStep), 0) from board where repRoot = 700
-select NVL(max(repStep), 0) from board where repRoot= 207 and (repIndent between 0 and 1)
-select * from board where num = 213
+create table b_comment(
+c_num number(5) not null primary key,
+c_writer varchar2(21) not null,
+c_content varchar2(1000) not null,
+c_password varchar2(8),
+c_writeday DATE default sysdate,
+c_good number(4) default 0,
+c_bad number(4) default 0,
+c_Root number(4),
+c_Step number(4),
+c_Indent number(4)
+)
+ALTER TABLE board add(
+good number(4) default 0,
+bad number(4) default 0
+)
+
+create table board_info(
+b_info_num bin number(5) not null primary key,
+b_info_good
+b_info_bad
+)
+
 select * from board order by repRoot desc, repStep
 
 select * from (select rownum rnum, num, title, writer, writeday, readcnt, repIndent from (
