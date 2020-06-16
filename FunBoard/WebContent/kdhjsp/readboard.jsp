@@ -10,33 +10,8 @@
 <meta name="viewport" content="width=device-width" initial-scale="1">
 <title>JSP 웹사이트</title>
 <link rel="stylesheet" href="./css/bootstrap.css">
+<link rel="stylesheet" href="./css/listboard.css">
 <link rel="stylesheet" href="../css/bootstrap.css">
-<style type="text/css">
-.fl{
-float: left;
-}
-.fr{
-float: right;
-}
-.btn{
-margin-left: 3px;
-width: 120px;
-}
-.listBoardHome:link{
-text-decoration: none;
-}
-.listBoardHome{
-font-size: 37px;
-display: block;
-    position: relative;
-    top: -33px;
-}
-#listBoardHomeDiv{
-height: 100px;
-margin-bottom: 0px;
-padding: 50px 24px 52px 18px;
-}
-</style>
 </head>
 <body>
 	<nav class="navbar navbar-expand navbar-dark bg-dark" id="navbars01">
