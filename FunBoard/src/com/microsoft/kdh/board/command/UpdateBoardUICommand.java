@@ -32,7 +32,7 @@ public class UpdateBoardUICommand implements Command {
 				}
 				boolean isUser = dao.isUser(login.getId(), num);
 				if (isUser) {
-					BoardDTO boarddto = dao.read(dao.getFkNum(num));
+					BoardDTO boarddto = dao.read(num);
 					request.setAttribute("dto", boarddto);
 					return new CommandAction(false, "./kdhjsp/updateboard.jsp");
 				} else {

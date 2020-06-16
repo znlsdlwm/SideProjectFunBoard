@@ -29,7 +29,7 @@ public class ReplyeBoardUICommand implements Command {
 				if (sNum != null) {
 					num = Integer.parseInt(sNum);
 				}
-				BoardDTO boarddto = dao.read(dao.getFkNum(num));
+				BoardDTO boarddto = dao.read(num);
 				request.setAttribute("dto", boarddto);
 				return new CommandAction(false, "/kdhjsp/replyboard.jsp");
 			}

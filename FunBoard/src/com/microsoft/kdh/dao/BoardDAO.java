@@ -150,28 +150,6 @@ public class BoardDAO {
 			clossAll(null, pstmt, null);
 		}
 	}
-	
-	public int getFkNum(int num) {
-		int fkNum = -1;
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		String sql = "select * from (" + "select rownum rnum, num from ("
-				+ "select * from board order by repRoot desc , repStep)) where rnum=?";
-		try {
-			conn = dataFactory.getConnection();
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, num);
-			rs = pstmt.executeQuery();
-			if (rs.next())
-				fkNum = rs.getInt("num");
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			clossAll(rs, pstmt, conn);
-		}
-		return fkNum;
-	}
 
 	public boolean isUser(String id, int num) {
 		boolean isUser = false;
