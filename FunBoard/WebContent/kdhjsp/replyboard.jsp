@@ -7,14 +7,16 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width" initial-scale="1">
 <title>JSP 웹사이트</title>
 <link rel="stylesheet" href="./css/bootstrap.css">
 <link rel="stylesheet" href="./css/listboard.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="./js/bootstrap.min.js"></script>
 </head>
 <body>
-	<nav class="navbar navbar-expand navbar-dark bg-dark" id="navbars01">
+	<nav class="navbar navbar-expand-md navbar-dark bg-dark">
 		<a class="navbar-brand" href="home.kdh">KDH의 홈페이지</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
 			data-target="#navbars01" aria-controls="navbars01"
@@ -22,7 +24,7 @@
 			<span class="navbar-toggler-icon"></span>
 		</button>
 
-		<div class="collapse navbar-collapse">
+		<div class="collapse navbar-collapse" id="navbars01">
 			<ul class="navbar-nav mr-auto">
 				<c:if test="${not empty login}">
 					<li class="nav-item active"><a class="nav-link"
