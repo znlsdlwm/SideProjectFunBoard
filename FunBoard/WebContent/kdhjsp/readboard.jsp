@@ -121,6 +121,7 @@
 			${c.c_step}
 			${c.c_indent}<br>
 			<form action="deleteuicommentboard.kdh" method="post">
+				<input type="hidden" name="c_num" value="${c.c_num}">
 				<input class="btn btn-danger btn-sm" type="submit" value="❌">
 			</form>
 		</c:forEach>
