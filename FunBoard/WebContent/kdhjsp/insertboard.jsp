@@ -56,9 +56,9 @@
 				placeholder="제목을 입력해 주세요." required="required"> <br>
 			content: <br>
 			<textarea class="col-sm-4" rows="10" name="content"></textarea>
-			<br> <input type="submit" value="전송"
-				class="btn btn-primary btn-lg"> <a href="listboard.kdh"
-				role="button" class="btn btn-info btn-lg">목록으로</a>
+			<br> <input class="btn btn-primary btn-lg" type="submit"
+				value="전송"> <a href="listboard.kdh" role="button"
+				class="btn btn-info btn-lg">목록으로</a>
 		</form>
 	</div>
 </body>
