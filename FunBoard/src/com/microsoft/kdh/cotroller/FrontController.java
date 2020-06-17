@@ -26,7 +26,6 @@ import com.microsoft.kdh.command.InsertUICommand;
 import com.microsoft.kdh.command.KDHHomeCommand;
 import com.microsoft.kdh.command.ListCommand;
 import com.microsoft.kdh.comment.command.CommentPasswordCheckCommand;
-import com.microsoft.kdh.comment.command.DeleteCommentBoardCommand;
 import com.microsoft.kdh.comment.command.DeleteUICommentBoardCommand;
 import com.microsoft.kdh.comment.command.InsertCommentBoardCommand;
 import com.microsoft.kdh.log.command.LoginCommand;

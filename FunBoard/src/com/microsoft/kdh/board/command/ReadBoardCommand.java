@@ -29,7 +29,7 @@ public class ReadBoardCommand implements Command {
 		CommentDAO cDAO = new CommentDAO();
 		List<CommentDTO> c_list = cDAO.listComment(num);
 		request.setAttribute("c_list", c_list);
-		return new CommandAction(false, "./kdhjsp/readboard.jsp");
+		return new CommandAction(false, "/kdhjsp/readboard.jsp");
 	}
 
 }
