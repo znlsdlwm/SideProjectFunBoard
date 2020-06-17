@@ -122,6 +122,7 @@ public class BoardEventDAO {
 		ResultSet rs = null;
 		String sql = "insert into b_eventTotal(b_num) values (?)";
 		try {
+			conn = dataFactory.getConnection();
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, num);
 			pstmt.executeUpdate();
