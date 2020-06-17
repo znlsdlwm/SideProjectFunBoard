@@ -48,34 +48,15 @@
 		</div>
 	</nav>
 	<div class="jumbotron">
-		<form action="deletecommentboard.kdh" method="post">
-			<input type="hidden" name="c_num" id="c_num" value="${param.c_num}" readonly="readonly"> 
+		<form action="commentpasswordcheck.kdh" method="post">
+			<input type="hidden" name="c_num" id="c_num" value="${param.c_num}" readonly="readonly">
+			<input type="hidden" name="num" id="num" value="${num}" readonly="readonly">  
 			<p><b>비밀 번호를 입력하세요</b></p> 
 			<input type="password" name="password" id="password">
 			<button class="btn btn-success btn-lg" id="checker">삭제</button>
 			<a class="btn btn-danger btn-lg" href="readboard.kdh?num=${num}" role="button">취소</a>
 		</form>
 	</div>
-	<script type="text/javascript">
-		$(document).ready(function() {
-			$("#checker").click(function(event) {
-				event.preventDefault();
-				var password = $("#password").val();
-				var c_num = $("#c_num").val();
-				$.ajax({
-					type : "post",
-					url : "commentpasswordcheck.kdh",
-					data : {
-						password : password,
-						c_num : c_num
-					},
-					dataType : "text",
-					success : function(result) {
-						alert(result);
-					}
-				});
-			});
-		});
-	</script>
+
 </body>
 </html>
