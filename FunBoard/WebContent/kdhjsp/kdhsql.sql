@@ -3,6 +3,7 @@ select * from board
 select * from b_comment
 select * from b_event
 
+insert into b_event(b_num,m_id,b_good) values (?,?,?)
 alter table b_comment add constraint fk_b_num foreign key(num) references board
 ALTER TABLE board add(
 good number(4) default 0,
