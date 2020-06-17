@@ -69,7 +69,7 @@
 				<a class="fl btn btn-info btn-lg" role="button" href="replyboardui.kdh?num=${dto.num}">답글</a>
 				<a class="fl btn btn-info btn-lg" role="button" href="listboard.kdh">목록</a>
 				<a class="fl btn btn-primary btn-lg" role="button" onclick="boardEventListener('${login.id}','${dto.num}','b_good', '추천')"><span class="material-icons">thumb_up</span></a>
-				<a class="fl btn btn-danger btn-lg" role="button" onclick="boardEventListener('${login.id}','${dto.num}','b_bad', '비추천)"><span class="material-icons">thumb_down</span></a>
+				<a class="fl btn btn-danger btn-lg" role="button" onclick="boardEventListener('${login.id}','${dto.num}','b_bad', '비추천')"><span class="material-icons">thumb_down</span></a>
 				<a class="fl btn btn-info btn-lg" role="button" onclick="boardEventListener('${login.id}','${dto.num}','b_warning', '신고')"><span class="material-icons">report</span></a>
 				<c:if test="${login.id eq dto.writer}">
 					<a class="fr btn btn-secondary btn-lg" role="button"

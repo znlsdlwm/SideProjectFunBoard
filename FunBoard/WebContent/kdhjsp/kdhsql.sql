@@ -2,8 +2,15 @@ select * from member
 select * from board
 select * from b_comment
 select * from b_event
+select * from b_eventTotal
 
-insert into b_event(b_num,m_id,b_good) values (?,?,?)
+create table b_eventTotal(
+b_num number(4) not null,
+b_good_total number(4) default 0,
+b_bad_total number(4) default 0,
+b_warning_total number(4) default 0,
+constraint fk_eT_num foreign key(b_num) references board(num)
+)
 alter table b_comment add constraint fk_b_num foreign key(num) references board
 ALTER TABLE board add(
 good number(4) default 0,
