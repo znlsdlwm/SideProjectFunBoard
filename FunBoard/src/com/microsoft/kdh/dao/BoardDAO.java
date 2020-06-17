@@ -173,7 +173,8 @@ public class BoardDAO {
 		return isUser;
 	}
 	// Create
-	public void insert(BoardDTO dto) {
+	public int insert(BoardDTO dto) {
+		int num = -1;
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		String sql = "insert into board(num,writer,title,content,repRoot,repStep,repIndent)"
@@ -181,11 +182,12 @@ public class BoardDAO {
 		try {
 			conn = dataFactory.getConnection();
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, createNum(conn));
+			num = createNum(conn);
+			pstmt.setInt(1, num);
 			pstmt.setString(2, dto.getWriter());
 			pstmt.setString(3, dto.getTitle());
 			pstmt.setString(4, dto.getContent());
-			pstmt.setInt(5, createNum(conn));
+			pstmt.setInt(5, num);
 			pstmt.setInt(6, dto.getRepStep());
 			pstmt.setInt(7, dto.getRepIndent());
 			pstmt.executeUpdate();
@@ -194,6 +196,7 @@ public class BoardDAO {
 		} finally {
 			clossAll(null, pstmt, conn);
 		}
+		return num;
 	}
 	
 	public void reply(int orgnum, BoardDTO dto) {

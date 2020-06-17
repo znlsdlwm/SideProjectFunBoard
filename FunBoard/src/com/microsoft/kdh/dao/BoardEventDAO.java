@@ -37,8 +37,12 @@ public class BoardEventDAO {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, b_num);
 			rs = pstmt.executeQuery();
-			if (rs.next())
-				total = new EventTotal(b_num, rs.getInt("b_good_total"), rs.getInt("b_bad_total"), rs.getInt("b_warning_total"));
+			if (rs.next()) {
+				Integer good = rs.getInt("b_good_total");
+				Integer bad = rs.getInt("b_bad_total");
+				Integer warning = rs.getInt("b_warning_total");
+				total = new EventTotal(b_num, good, bad, warning);
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -112,7 +116,21 @@ public class BoardEventDAO {
 		}
 		return cnt;
 	}
-
+	public void createTotal(int num) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "insert into b_eventTotal(b_num) values (?)";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, num);
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			clossAll(rs, pstmt, null);
+		}
+	}
 	// private
 	private void createCntEvent(Connection conn, BoardEventDTO dto) {
 		PreparedStatement pstmt = null;

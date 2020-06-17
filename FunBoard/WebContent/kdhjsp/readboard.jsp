@@ -63,6 +63,13 @@
 	<div id="newjumbotron" class="pd-bottom-32 pd-top-32">
 		<div style="margin-left: 32px;">${dto.content}</div>
 	</div>
+	<div id="newjumbotron" class="pd-bottom-32 pd-top-32">
+		<div class="container">
+			${total.b_good_total}
+			${total.b_bad_total}
+			${total.b_warning_total}
+		</div>
+	</div>	
 	<div id="newjumbotron" class="pd-bottom-64 pd-top-16">	
 		<div class="fl">
 			<div class="container">
