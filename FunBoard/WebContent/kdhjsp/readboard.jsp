@@ -95,35 +95,37 @@
 				</div> 
 			</div>
 			<div class="row fr">
-				<div class="col">
-					<input type="submit" value="등록">
+				<div class="col-sm-4">
+					<input class="col-sm-12 btn btn-success" type="submit" value="등록">
 				</div>
-				<div class="col">
-					<a href="#">취소</a>
+				<div class="col-sm-4">
+					<a class="col-sm-12 btn btn-danger" role="button" href="readboard.kdh?num=${dto.num}">취소</a>
 				</div>
 			</div>
 			</form>
 		</div>
 	</div>
-	<div id="newjumbotron">
-		<c:forEach items="${c_list}" var="c">
-			${c.c_num}
-			${c.c_writer}
-			${c.c_content}
-			${c.c_password} 
-			${c.c_writeday} 
-			${c.c_good} 
-			${c.c_bad}
-			${c.c_warning} 
-			${c.c_root} 
-			${c.c_step}
-			${c.c_indent}<br>
-			<form action="deleteuicommentboard.kdh" method="post">
-				<input type="hidden" name="c_num" value="${c.c_num}">
-				<input type="hidden" name="num" value="${param.num}">
-				<input class="btn btn-danger btn-sm" type="submit" value="❌">
-			</form>
-		</c:forEach>
+	<div id="newjumbotron" class="pd-top-32">
+		<div class="container">
+			<c:forEach items="${c_list}" var="c">
+				${c.c_num}
+				${c.c_writer}
+				${c.c_content}
+				${c.c_password} 
+				${c.c_writeday} 
+				${c.c_good} 
+				${c.c_bad}
+				${c.c_warning} 
+				${c.c_root} 
+				${c.c_step}
+				${c.c_indent}<br>
+				<form action="deleteuicommentboard.kdh" method="post">
+					<input type="hidden" name="c_num" value="${c.c_num}">
+					<input type="hidden" name="num" value="${param.num}">
+					<input class="btn btn-danger btn-sm" type="submit" value="❌">
+				</form>
+			</c:forEach>
+		</div>
 	</div>
 </body>
 </html>
