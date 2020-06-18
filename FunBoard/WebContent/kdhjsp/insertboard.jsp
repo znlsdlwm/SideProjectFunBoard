@@ -47,10 +47,12 @@
 			</form>
 		</div>
 	</nav>
-	<div class="jumbotron" id="listBoardHomeDiv">
-		<a class="listBoardHome" href="listboard.kdh" role="button">기본 게시판</a>
+	<div class="page_head">
+		<div class="container">
+			<a href="listboard.kdh" role="button">기본 게시판</a>
+		</div>
 	</div>
-	<div class="jumbotron">
+	<div class="newjumbotron container">
 		<h1 class="listBoardHome">게시글 작성</h1>
 		<form action="insertboard.kdh" method="post">
 			<input type="text" readonly="readonly" value="${login.id}"><br>
