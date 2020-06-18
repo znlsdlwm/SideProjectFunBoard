@@ -192,20 +192,20 @@ public class JBoardDAO {
 		}
 	}
 	
-	public JBoardDTO updateUI(int num) {
+	public JBoardDTO updateUI(int num, String writer) {
 		JBoardDTO dto = null;
 		Connection conn = null;
 		PreparedStatement pstmt = null;
-		String sql = "select * from board where num=?";
+		String sql = "select * from board where num=? and writer=?";
 		ResultSet rs= null;
 		
 		try {
             conn = dataFactory.getConnection();
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, num);
+			pstmt.setString(2, writer);
 			rs=pstmt.executeQuery();
 			if (rs.next()) {
-				String writer = rs.getString("writer");
 				String title = rs.getString("title");
 				String content = rs.getString("content");
 				int repRoot = rs.getInt("repRoot");
@@ -240,14 +240,15 @@ public class JBoardDAO {
 		}
 	}
 	
-	public void delete(int num) {
+	public void delete(JBoardDTO dto) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
-		String sql ="delete from board where num=?";
+		String sql ="delete from board where num=? and writer=?";
 		try {
 			conn = dataFactory.getConnection();
 			pstmt= conn.prepareStatement(sql);
-			pstmt.setInt(1, num);
+			pstmt.setInt(1, dto.getNum());
+			pstmt.setString(2, dto.getWriter());
 			pstmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();

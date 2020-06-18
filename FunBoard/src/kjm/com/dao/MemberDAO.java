@@ -103,5 +103,44 @@ public MemberDAO() {
 			}
 		return dto;
 		}
+	public void update(MemberDTO dto) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = "update member set name=?, age=?, pw=? where id=?";
+		
+		try {
+			conn = dataFactory.getConnection();
+			pstmt= conn.prepareStatement(sql);
+			pstmt.setString(4, dto.getId());
+			pstmt.setString(1, dto.getName());
+			pstmt.setInt(2, dto.getAge());
+			pstmt.setString(3, dto.getPw());
+			
+			pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+		} finally {
+			closeAll(null, pstmt, conn);
+		}
+		
+	}
+	public void delete(MemberDTO dto) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = "delete from member where id= ?";
+		
+		try {
+			conn = dataFactory.getConnection();
+			pstmt= conn.prepareStatement(sql);
+			pstmt.setString(1, dto.getId());						
+			pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+		} finally {
+			closeAll(null, pstmt, conn);
+		}
+	}
 }
 	

@@ -35,16 +35,16 @@
 		${login.id} 님
 		<input type="submit" value="로그아웃">
 		</div>
-		<div style = "padding: 0px 210px 0px 0px;">
+		<div style = "padding: 0px 130px 0px 0px;">
 	<a href="LogSelectById.kjm?id=${login.id}">회원정보</a>
 		</div>
-	</form><br>
-
+		<div style = "padding: 0px 565px 0px 0px;">  
+		<h3><a href="kjmInsertui.kjm">글쓰기</a></h3>
+		</div>
+	</form>
 	</c:otherwise>
-</c:choose>
-		
+</c:choose>	
 </Lbody>
-
 	<table border="1" align="center">
 		<thead>
 			<tr>
@@ -59,7 +59,6 @@
 			<c:forEach items="${list}" var="dto">
 				<tr>
 					<td>${dto.num}</td>
-
 					<td width="450px" align="justify"><c:forEach begin="1"
 							end="${dto.repIndent}">
 			    	&nbsp;&nbsp;
@@ -70,13 +69,10 @@
 				</tr>
 			</c:forEach>
 		</tbody>
-
 		<br>
 		<br>
 	</table>
-	<div style = "padding: 0px 0px 0px 720px;">  
-	<h3><a href="kjmInsertui.kjm">글쓰기</a></h3>
-	</div>
+	<br><br><br>
 	<a href="kjmlist.kjm?curPage=${(to.curPage-1)>0 ? (to.curPage-1):1}">&laquo;</a>&nbsp;&nbsp;
 
 	<c:forEach begin="${to.beginPageNum}" end="${to.stopPageNum}" var="idx">

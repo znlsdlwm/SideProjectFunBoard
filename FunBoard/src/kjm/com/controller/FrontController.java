@@ -59,16 +59,16 @@ public class FrontController extends HttpServlet {
 			com = new JLogInsertCommand();
 		} else if (sp.equalsIgnoreCase("/LogSelectById.kjm")) {
 			com = new JLogselectByIdCommand();
-//			} else if (sp.equalsIgnoreCase("/LogUpdateui.kjm")) {
-//				com = new JLogUpdateUICommand();
-//			} else if (sp.equalsIgnoreCase("/LogUpdate.kjm")) {
-//				com = new JLogUpdateCommand();
+		} else if (sp.equalsIgnoreCase("/LogUpdateui.kjm")) {
+			com = new JLogUpdateUICommand();
+		} else if (sp.equalsIgnoreCase("/LogUpdate.kjm")) {
+			com = new JLogUpdateCommand();
 		} else if (sp.equalsIgnoreCase("/Login.kjm")) {
 			com = new JLoginCommand();
 		} else if (sp.equalsIgnoreCase("/Logout.kjm")) {
 			com = new JLogoutCommand();
-//			} else if (sp.equalsIgnoreCase("/LogDelete.kjm")) {
-//				com = new JLogDeleteCommand();
+		} else if (sp.equalsIgnoreCase("/LogDelete.kjm")) {
+	    	com = new JLogDeleteCommand();
 //보류		}else if(sp.equalsIgnoreCase("/replyui.do")) {
 //보류				com= new ReplyUICommand();
 //보류		}else if(sp.equalsIgnoreCase("/reply.do")) {

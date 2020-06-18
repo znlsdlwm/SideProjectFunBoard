@@ -29,7 +29,7 @@
 	<br><br>
 	
 
-	<a href="kjmupdateui.kjm?num=${dto.num}">수정</a>|<a href="kjmdelete.kjm?num=${dto.num}">삭제</a>|<a href="덧글예정=${dto.num}">댓글을만들자</a>|<a href="kjmlist.kjm">목록</a>
+	<a href="kjmupdateui.kjm?num=${dto.num}&writer=${dto.writer}">수정</a>|<a href="kjmdelete.kjm?num=${dto.num}&writer=${dto.writer}">삭제</a>|<a href="덧글예정=${dto.num}">댓글을만들자</a>|<a href="kjmlist.kjm">목록</a>
 </body>
 </body>
 </html>

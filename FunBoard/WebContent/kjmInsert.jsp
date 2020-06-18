@@ -13,7 +13,7 @@
 <body align="center">
 <H1>게시글 작성</H1>
 <form action="kjmInsert.kjm" method="post">
-		글쓴이 : <input name = "writer"> <br>
+		글쓴이 : <input name ="writer" value="${login.id}" readonly> <br>
 		제목&nbsp;&nbsp;&nbsp; : <input name = "title"> <br>
 		<div style = "padding: 0px 200px 0px 0px;">  
 		내용 :<br>
