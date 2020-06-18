@@ -98,6 +98,7 @@
 			</table>
 		</div>
 	</div>
+<<<<<<< HEAD
 	<ul class="pagination container page">
 		<c:if test="${to.curPage>1}">
 			<li class="page-item"><a class="page-link"
@@ -114,18 +115,38 @@
 					href="listboard.kdh?query=${query}&curPage=${idx}">${idx}</a></li>
 			</c:if>
 			<c:if test="${idx!=to.curPage}">
+=======
+	<div id="newjumbotron">
+		<ul class="pagination">
+			<c:if test="${to.curPage>1}">
+>>>>>>> refs/remotes/origin/master
 				<li class="page-item"><a class="page-link"
-					href="listboard.kdh?query=${query}&curPage=${idx}">${idx}</a></li>
-			</c:if>	
-		</c:forEach>
-		<c:if test="${to.stopPageNum<to.totalPage}">
-			<li class="page-item"><a class="page-link"
-				href="listboard.kdh?query=${query}&curPage=${to.curPage+to.perPage}">다음</a></li>
-		</c:if>
-		<c:if test="${to.curPage<to.totalPage}">
-			<li class="page-item"><a class="page-link"
-				href="listboard.kdh?query=${query}&curPage=${to.totalPage}">끝으로</a></li>
-		</c:if>
-	</ul>
+					href="listboard.kdh?query=${query}&curPage=${1}">처음으로</a></li>
+			</c:if>
+			<c:if test="${to.beginPageNum>1}">
+				<li class="page-item"><a class="page-link"
+					href="listboard.kdh?query=${query}&curPage=${to.curPage-to.perPage}">이전</a></li>
+			</c:if>
+			<c:forEach begin="${to.beginPageNum}" end="${to.stopPageNum}"
+				var="idx">
+				<c:if test="${idx==to.curPage}">
+					<li class="page-item active"><a class="page-link"
+						href="listboard.kdh?query=${query}&curPage=${idx}">${idx}</a></li>
+				</c:if>
+				<c:if test="${idx!=to.curPage}">
+					<li class="page-item"><a class="page-link"
+						href="listboard.kdh?query=${query}&curPage=${idx}">${idx}</a></li>
+				</c:if>	
+			</c:forEach>
+			<c:if test="${to.stopPageNum<to.totalPage}">
+				<li class="page-item"><a class="page-link"
+					href="listboard.kdh?query=${query}&curPage=${to.curPage+to.perPage}">다음</a></li>
+			</c:if>
+			<c:if test="${to.curPage<to.totalPage}">
+				<li class="page-item"><a class="page-link"
+					href="listboard.kdh?query=${query}&curPage=${to.totalPage}">끝으로</a></li>
+			</c:if>
+		</ul>
+		</div>
 </body>
 </html>

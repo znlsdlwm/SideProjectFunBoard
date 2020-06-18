@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.microsoft.kdh.command.Command;
 import com.microsoft.kdh.command.CommandAction;
 import com.microsoft.kdh.dao.BoardDAO;
+import com.microsoft.kdh.dao.BoardEventDAO;
 import com.microsoft.kdh.domain.BoardDTO;
 
 import member.domain.LoginDTO;
@@ -23,7 +24,10 @@ public class InsertBoardCommand implements Command {
 		String writer = dto.getId();
 		String content =request.getParameter("content");
 		BoardDAO dao = new BoardDAO();
-		dao.insert(new BoardDTO(0, writer, title, content, null, 0, 0, 0, 0));
+		int num = dao.insert(new BoardDTO(0, writer, title, content, null, 0, 0, 0, 0));
+		// 게시글 추가정보
+		BoardEventDAO Edao = new BoardEventDAO();
+		Edao.createTotal(num);
 		return new CommandAction(true, "listboard.kdh");
 	}
 

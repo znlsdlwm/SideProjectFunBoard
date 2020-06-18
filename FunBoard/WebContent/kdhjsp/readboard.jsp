@@ -14,6 +14,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="./js/bootstrap.min.js"></script>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
 	<nav class="navbar navbar-expand-md navbar-dark bg-dark">
@@ -62,12 +63,21 @@
 	<div id="newjumbotron" class="pd-bottom-32 pd-top-32">
 		<div style="margin-left: 32px;">${dto.content}</div>
 	</div>
+	<div id="newjumbotron" class="pd-bottom-32 pd-top-32">
+		<div class="container">
+			${total.b_good_total}
+			${total.b_bad_total}
+			${total.b_warning_total}
+		</div>
+	</div>	
 	<div id="newjumbotron" class="pd-bottom-64 pd-top-16">	
 		<div class="fl">
 			<div class="container">
-				<a class="fl btn btn-info btn-lg" role="button"
-					href="replyboardui.kdh?num=${dto.num}">답글</a> <a
-					class="fl btn btn-info btn-lg" role="button" href="listboard.kdh">목록</a>
+				<a class="fl btn btn-info btn-lg" role="button" href="replyboardui.kdh?num=${dto.num}">답글</a>
+				<a class="fl btn btn-info btn-lg" role="button" href="listboard.kdh">목록</a>
+				<a class="fl btn btn-primary btn-lg" role="button" onclick="boardEventListener('${login.id}','${dto.num}','b_good', '추천')"><span class="material-icons">thumb_up</span></a>
+				<a class="fl btn btn-danger btn-lg" role="button" onclick="boardEventListener('${login.id}','${dto.num}','b_bad', '비추천')"><span class="material-icons">thumb_down</span></a>
+				<a class="fl btn btn-info btn-lg" role="button" onclick="boardEventListener('${login.id}','${dto.num}','b_warning', '신고')"><span class="material-icons">report</span></a>
 				<c:if test="${login.id eq dto.writer}">
 					<a class="fr btn btn-secondary btn-lg" role="button"
 						href="updateboardui.kdh?num=${dto.num}">수정</a>
@@ -127,5 +137,29 @@
 			</c:forEach>
 		</div>
 	</div>
+	<script type="text/javascript">
+		function boardEventListener(login, num, type, value) {
+			if(login==''){
+				alert("로그인 후에 이용할 수 있습니다.");
+			}else {
+				$.ajax({
+					type : "get",
+					url : "BoardEventListen",
+					data : {
+						login : login,
+						num : num,
+						type : type
+					},
+					success : function(result) {
+						if(result=='성공'){
+							alert(value+"하셨습니다.");
+						} else {
+							alert("한번만 가능합니다.");
+						}
+					}
+				});
+			}
+		}
+	</script>
 </body>
 </html>
