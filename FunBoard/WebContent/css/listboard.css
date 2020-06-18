@@ -1,3 +1,84 @@
+a:link{
+text-decoration: none;
+}
+a:visited {
+text-decoration: none;	
+}
+a:hover {
+text-decoration: none;
+}
+a:active {
+text-decoration: none;	
+}
+a{
+text-decoration: none;
+}
+.page_head{
+display: -ms-flexbox;
+display: flex;
+-ms-flex-wrap: wrap;
+flex-wrap: wrap;
+margin-right: 15px;
+margin-left: 30px;
+}
+.page_head a{
+color: #1b1c1e;
+font-size: 3.5rem;
+line-height: 1.2;
+font-weight: 700;
+}
+.page_body{
+display: -ms-flexbox;
+display: flex;
+-ms-flex-wrap: wrap;
+flex-wrap: wrap;
+margin-right: 15px;
+margin-left: 30px;
+
+padding: 2rem 1rem;
+
+}
+.wrting{
+color: #ffffff;
+background-color: #4e5ef2;
+border-color: #4e5ef2;
+font-size: 17px;
+font-weight: 700;
+width: 83px;
+height: 36px;
+}
+.frm{
+margin-bottom: 8px;
+}
+.f{
+box-sizing: inherit;
+border-radius: 10px;
+padding: 6px 12px;	
+}
+.q{
+box-sizing: inherit;
+border-radius: 10px;
+padding: 6px 12px;
+width: 250px; 
+}
+.page{
+left: 180%;
+margin-left: -150%;
+position: fixed;
+}
+.board_th_num {
+	width: 60px;
+	height: 26px;
+	text-align: center;
+}
+.board_td_num {
+	font-size: 11px;
+	text-align: center;
+}
+
+#board_td_title {
+	text-align: left;
+}
 .listBoardHome:link {
 	text-decoration: none;
 }
@@ -22,8 +103,26 @@
 .board {
 	text-align: center;
 }
-.cb{
+<!-- color -->
+.cmain{
+color: #26265d;
+}
+.cred{
+color: #ff3b47;
+color: #ef2936;
+color: #4554e5;
+color: #4857ee;
+color: #3e4cd3;
+color: #e5e4e9;
+color: #ffffff;
+color: #0e0e0e;
+color: #000000;
+}
+.cb1{
 color: #26205e;	
+}
+.cb2{
+color: #5872e9;	
 }
 .cp1{
 color: #ff468d;
@@ -32,26 +131,36 @@ color: #ff468d;
 color: #ffbfe3;
 }
 .cm1{
-color: #ff468d;
+color: #01ebe2;
 }
 .cm2{
-color: #ff468d;
+color: #a7ffef;
+}
+.cy1{
+color: #f3d24d;
+}
+.cy2{
+color: #ffef8d;
+}
+.co1{
+color: #a8751c;
+}
+.co2{
+color: #f1d34f;
+}
+.tb1{
+background: #dce5f6;
+}
+.tb2{
+background: #ffbfe3;
+border-radius: 3em;
+}
+.tc1{
+color: #faf6f7;
 }
 
-.board_th_num {
-	width: 50px;
-	height: 26px;
-	text-align: center;
-}
 
-.board_td_num {
-	font-size: 11px;
-	text-align: center;
-}
 
-#board_td_title {
-	text-align: left;
-}
 .fl{
 float: left;
 }
@@ -60,7 +169,7 @@ float: right;
 }
 .btn{
 margin-left: 3px;
-width: 120px;
+width: 84px;
 }
 #mg-bottom_0{
 	margin-bottom: 0px;	

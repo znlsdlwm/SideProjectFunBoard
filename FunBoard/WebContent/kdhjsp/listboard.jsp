@@ -44,55 +44,61 @@
 				action="listboard.kdh?query=${query}">
 				<input class="form-control" name="query" type="text"
 					placeholder="Search"> <input
-					class="btn btn-outline-primary" type="submit" value="검색">
+					class="btn wrting" type="submit" value="검색">
 			</form>
 		</div>
 	</nav>
-	<div class="jumbotron" id="listBoardHomeDiv">
-		<a class="listBoardHome" href="listboard.kdh" role="button">기본 게시판</a>
+	<div class="page_head">
+		<a href="listboard.kdh" role="button">기본 게시판</a>
 	</div>
-	<div class="jumbotron" id="listBoardTableDiv">
-		<a href="./insertboardui.kdh">글쓰기</a>
-		<form
-			action="listboard.kdh?query=${query}&curPage=${to.curPage}&option=${option}">
-			<select name="option">
-				<option value="1">제목</option>
-				<option value="2">글쓴이</option>
-			</select> <input name="query"> <input type="submit" value="검색">
-		</form>
-		<table border="1" class="board">
-			<tr>
-				<th class="board_th_num">번호</th>
-				<th>글제목</th>
-				<th>글쓴이</th>
-				<th>작성시간</th>
-				<th>조회수</th>
-				<%--
-				<th>repRoot</th>
-				<th>repStep</th>
-				<th>repIndent</th>
-				 --%>
-			</tr>
-			<c:forEach items="${list}" var="dto">
+	
+	<div class="page_body">
+		<div class="container">
+			<form class="frm fr" action="listboard.kdh?query=${query}&curPage=${to.curPage}&option=${option}">
+				<select class="f" name="option">
+					<option value="1">제목</option>
+					<option value="2">글쓴이</option>
+				</select>
+				<input class="q" name="query">
+				<input class="btn wrting" type="submit" value="검색">
+				<a class="btn wrting" role="button" href="./insertboardui.kdh">글쓰기</a>
+			</form>
+		</div>
+		<div class="container">
+			<table border="1" class="board table table-striped table-hover container">
 				<tr>
-					<td class="board_td_num">${dto.num}</td>
-					<td id="board_td_title" width="300px"><c:forEach begin="1"
-							end="${dto.repIndent}">
-						&nbsp;&nbsp;
-					</c:forEach><a href="readboard.kdh?num=${dto.num}"> ${dto.title} </a></td>
-					<td>${dto.writer}</td>
-					<td>${dto.writeDay}</td>
-					<td>${dto.readcnt}</td>
+					<th class="board_th_num">번호</th>
+					<th>글제목</th>
+					<th>글쓴이</th>
+					<th>작성시간</th>
+					<th>조회수</th>
 					<%--
-					<td>${dto.repRoot}</td>
-					<td>${dto.repStep}</td>
-					<td>${dto.repIndent}</td>
+					<th>repRoot</th>
+					<th>repStep</th>
+					<th>repIndent</th>
 					 --%>
 				</tr>
-			</c:forEach>
-		</table>
+				<c:forEach items="${list}" var="dto">
+					<tr>
+						<td class="board_td_num">${dto.num}</td>
+						<td id="board_td_title" width="300px"><c:forEach begin="1"
+								end="${dto.repIndent}">
+							&nbsp;&nbsp;
+						</c:forEach><a href="readboard.kdh?num=${dto.num}"> ${dto.title} </a></td>
+						<td>${dto.writer}</td>
+						<td>${fn:substring(dto.writeDay,0,10)}</td>
+						<td>${dto.readcnt}</td>
+						<%--
+						<td>${dto.repRoot}</td>
+						<td>${dto.repStep}</td>
+						<td>${dto.repIndent}</td>
+						 --%>
+					</tr>
+				</c:forEach>
+			</table>
+		</div>
 	</div>
-	<ul class="pagination">
+	<ul class="pagination container page">
 		<c:if test="${to.curPage>1}">
 			<li class="page-item"><a class="page-link"
 				href="listboard.kdh?query=${query}&curPage=${1}">처음으로</a></li>
