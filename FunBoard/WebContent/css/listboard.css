@@ -20,6 +20,7 @@ display: flex;
 flex-wrap: wrap;
 margin-right: 15px;
 margin-left: 30px;
+margin-top: 15px;
 }
 .page_head a{
 color: #1b1c1e;
@@ -79,27 +80,6 @@ position: fixed;
 #board_td_title {
 	text-align: left;
 }
-.listBoardHome:link {
-	text-decoration: none;
-}
-
-.listBoardHome {
-	font-size: 37px;
-	display: block;
-	position: relative;
-	top: -33px;
-}
-
-#listBoardHomeDiv {
-	height: 100px;
-	margin-bottom: 0px;
-	padding: 50px 24px 52px 18px;
-}
-
-#listBoardTableDiv {
-	padding: 0px 32px 0px 32px;
-}
-
 .board {
 	text-align: center;
 }
@@ -160,7 +140,7 @@ color: #faf6f7;
 }
 
 
-
+<!-- option -->
 .fl{
 float: left;
 }

@@ -49,7 +49,9 @@
 		</div>
 	</nav>
 	<div class="page_head">
-		<a href="listboard.kdh" role="button">기본 게시판</a>
+		<div class="container">
+			<a href="listboard.kdh" role="button">기본 게시판</a>
+		</div>
 	</div>
 	
 	<div class="page_body">
@@ -65,7 +67,7 @@
 			</form>
 		</div>
 		<div class="container">
-			<table border="1" class="board table table-striped table-hover container">
+			<table border="1" class="container board table table-striped table-hover container">
 				<tr>
 					<th class="board_th_num">번호</th>
 					<th>글제목</th>
@@ -98,28 +100,9 @@
 			</table>
 		</div>
 	</div>
-<<<<<<< HEAD
-	<ul class="pagination container page">
-		<c:if test="${to.curPage>1}">
-			<li class="page-item"><a class="page-link"
-				href="listboard.kdh?query=${query}&curPage=${1}">처음으로</a></li>
-		</c:if>
-		<c:if test="${to.beginPageNum>1}">
-			<li class="page-item"><a class="page-link"
-				href="listboard.kdh?query=${query}&curPage=${to.curPage-to.perPage}">이전</a></li>
-		</c:if>
-		<c:forEach begin="${to.beginPageNum}" end="${to.stopPageNum}"
-			var="idx">
-			<c:if test="${idx==to.curPage}">
-				<li class="page-item active"><a class="page-link"
-					href="listboard.kdh?query=${query}&curPage=${idx}">${idx}</a></li>
-			</c:if>
-			<c:if test="${idx!=to.curPage}">
-=======
-	<div id="newjumbotron">
-		<ul class="pagination">
+	<div class="container">
+		<ul class="pagination container page">
 			<c:if test="${to.curPage>1}">
->>>>>>> refs/remotes/origin/master
 				<li class="page-item"><a class="page-link"
 					href="listboard.kdh?query=${query}&curPage=${1}">처음으로</a></li>
 			</c:if>
@@ -140,13 +123,13 @@
 			</c:forEach>
 			<c:if test="${to.stopPageNum<to.totalPage}">
 				<li class="page-item"><a class="page-link"
-					href="listboard.kdh?query=${query}&curPage=${to.curPage+to.perPage}">다음</a></li>
+					href="listboard.kdh?query=${query}&curPage=${to.curPage+to.perPage>to.totalPage ? to.totalPage : to.curPage+to.perPage}">다음</a></li>
 			</c:if>
 			<c:if test="${to.curPage<to.totalPage}">
 				<li class="page-item"><a class="page-link"
 					href="listboard.kdh?query=${query}&curPage=${to.totalPage}">끝으로</a></li>
 			</c:if>
 		</ul>
-		</div>
+	</div>
 </body>
 </html>
