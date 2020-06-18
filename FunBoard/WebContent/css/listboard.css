@@ -22,6 +22,21 @@
 .board {
 	text-align: center;
 }
+.cb{
+color: #26205e;	
+}
+.cp1{
+color: #ff468d;
+}
+.cp2{
+color: #ffbfe3;
+}
+.cm1{
+color: #ff468d;
+}
+.cm2{
+color: #ff468d;
+}
 
 .board_th_num {
 	width: 50px;
