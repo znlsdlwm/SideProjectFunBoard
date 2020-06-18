@@ -74,3 +74,56 @@ name varchar2(12) not null,
 age number(3),
 pw varchar2(8) not null
 )
+
+
+
+create table MBER(
+ID varchar2(4) not null,
+NAME varchar2(12) not null,
+AGE number(3),
+PASSWORD varchar2(8) not null
+)
+create table BBS(
+No number(4) not null,
+WRTER varchar2(21) not null,
+SJ varchar2(60) not null,
+CN varchar2(1000),
+DTTM DATE default sysdate,
+RDCNT number(4),
+ROOT number(4),
+STEP number(4),
+INDENT number(4),
+)
+create table ANSWER(
+No number(4) not null primary key,
+BBS_No not null,
+WRTER varchar2(21) not null,
+CN varchar2(1000) not null,
+PASSWORD varchar2(8),
+DTTM DATE default sysdate,
+RECOMEND number(4) default 0,
+NONRECOMEND number(4) default 0,
+REPORT number(4) default 0,
+Root number(4),
+Step number(4),
+Indent number(4),
+constraint fk_BBS_No foreign key(BBS_No) references BBS(No)
+)
+
+create table BBS_ADIT_STTUS(
+BBS_No number(4) not null,
+MBER_ID varchar2(4) not null,
+RECOMEND number(4) default 0 check (RECOMEND IN(0, 1)),
+NONRECOMEND number(4) default 0 check (NONRECOMEND IN(0, 1)),
+REPORT number(4) default 0 check (REPORT IN(0, 1)),
+constraint fk_BBS_No foreign key(BBS_No) references BBS(No),
+constraint fk_MBER_ID foreign key(MBER_ID) references MBER(id)
+)
+
+create table BBS_ADIT_INFO(
+BBS_No number(4) not null,
+RECOMEND_total number(4) default 0,
+NONRECOMEND_total number(4) default 0,
+REPORT_total number(4) default 0,
+constraint fk_BBS_No foreign key(BBS_No) references BBS(No)
+)
