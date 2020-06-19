@@ -67,36 +67,35 @@
 			</form>
 		</div>
 		<div class="container">
-			<table border="1" class="container board table table-striped table-hover container">
-				<tr>
-					<th class="board_th_num">번호</th>
-					<th>글제목</th>
-					<th>글쓴이</th>
-					<th>작성시간</th>
-					<th>조회수</th>
-					<%--
-					<th>repRoot</th>
-					<th>repStep</th>
-					<th>repIndent</th>
-					 --%>
-				</tr>
-				<c:forEach items="${list}" var="dto">
+			<table border="1" class="table table-striped table-hover board_list">
+				 <colgroup>
+			        <col width="7%"/>
+			        <col width="*"/>
+			        <col width="15%"/>
+			        <col width="10%"/>
+			        <col width="10%"/>
+			    </colgroup>
+			    <thead>
 					<tr>
-						<td class="board_td_num">${dto.num}</td>
-						<td id="board_td_title" width="300px"><c:forEach begin="1"
-								end="${dto.repIndent}">
-							&nbsp;&nbsp;
-						</c:forEach><a href="readboard.kdh?num=${dto.num}"> ${dto.title} </a></td>
-						<td>${dto.writer}</td>
-						<td>${fn:substring(dto.writeDay,0,10)}</td>
-						<td>${dto.readcnt}</td>
-						<%--
-						<td>${dto.repRoot}</td>
-						<td>${dto.repStep}</td>
-						<td>${dto.repIndent}</td>
-						 --%>
+						<th>번호</th>
+						<th>글제목</th>
+						<th>글쓴이</th>
+						<th>작성시간</th>
+						<th>조회수</th>
 					</tr>
-				</c:forEach>
+			    </thead>
+				<tbody>
+					<c:forEach items="${list}" var="dto">
+						<tr>
+							<td class="td_num">${dto.num}</td>
+							<td class="title" width="300px"><c:forEach begin="1" end="${dto.repIndent}">&nbsp;&nbsp;</c:forEach>
+								<a href="readboard.kdh?num=${dto.num}"> ${dto.title} </a></td>
+							<td>${dto.writer}</td>
+							<td>${fn:substring(dto.writeDay,0,10)}</td>
+							<td>${dto.readcnt}</td>
+						</tr>
+					</c:forEach>
+				</tbody>
 			</table>
 		</div>
 	</div>
