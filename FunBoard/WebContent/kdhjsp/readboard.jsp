@@ -134,19 +134,35 @@
 			<div class="mg-t-64 mg-r-16 mg-b-64 mg-l-16">
 				<div class="container">
 					<c:forEach items="${c_list}" var="c">
-						<table>
-							<tr>
-								<td>${c.c_writer}</td>
-								<td>${c.c_content}</td>
-								<td>${c.c_writeday}</td>
-								<td></td>
-								<td id="c_good">${total.c_good_total}</td>
-								<td><a class="btn btn-primary btn-lg" role="button" onclick="commentventListener('${login.id}','${dto.num}','c_good', '추천')"><span class="material-icons">thumb_up</span></a></td>
-								<td id="c_bad">${total.c_bad_total}</td>
-								<td><a class="btn btn-danger btn-lg" role="button" onclick="commentEventListener('${login.id}','${dto.num}','c_bad', '비추천')"><span class="material-icons">thumb_down</span></a></td>
-								<td id="c_warning">${total.c_warning_total}</td>
-								<td><a class="btn btn-warning btn-lg" role="button" onclick="commentEventListener('${login.id}','${dto.num}','c_warning', '신고')"><span class="material-icons">report</span></a></td>
-							</tr>
+						<table class="answer_view">
+							<colgroup>
+				            	<col width="15%">
+					            <col width="*">
+					            <col width="15%">
+					            <col width="10%">
+			   			     </colgroup>
+			   			    <tbody>
+								<tr>
+									<td>${c.c_writer}</td>
+									<td class="view_text">${c.c_content}</td>
+									<td>${c.c_writeday}</td>
+									<td>
+										<form action="deleteuicommentboard.kdh" method="post">
+											<input type="hidden" name="c_num" value="${c.c_num}">
+											<input type="hidden" name="num" value="${param.num}">
+											<input class="btn btn-danger" type="submit" value="❌">
+										</form>
+									</td>
+								<%--
+									<td id="c_good">${total.c_good_total}</td>
+									<td><a class="btn btn-primary btn-lg" role="button" onclick="commentventListener('${login.id}','${dto.num}','c_good', '추천')"><span class="material-icons">thumb_up</span></a></td>
+									<td id="c_bad">${total.c_bad_total}</td>
+									<td><a class="btn btn-danger btn-lg" role="button" onclick="commentEventListener('${login.id}','${dto.num}','c_bad', '비추천')"><span class="material-icons">thumb_down</span></a></td>
+									<td id="c_warning">${total.c_warning_total}</td>
+									<td><a class="btn btn-warning btn-lg" role="button" onclick="commentEventListener('${login.id}','${dto.num}','c_warning', '신고')"><span class="material-icons">report</span></a></td>
+								 --%> 
+								</tr>
+			   			    </tbody>
 						</table>
 						${c.c_num}
 						${c.c_writer}
@@ -159,11 +175,6 @@
 						${c.c_root} 
 						${c.c_step}
 						${c.c_indent}<br>
-						<form action="deleteuicommentboard.kdh" method="post">
-							<input type="hidden" name="c_num" value="${c.c_num}">
-							<input type="hidden" name="num" value="${param.num}">
-							<input class="btn btn-danger" type="submit" value="❌">
-						</form>
 					</c:forEach>
 				</div>
 			</div>
