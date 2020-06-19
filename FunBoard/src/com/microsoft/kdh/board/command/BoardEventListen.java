@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.microsoft.kdh.command.EventTotal;
 import com.microsoft.kdh.dao.BoardEventDAO;
 import com.microsoft.kdh.dao.MemberDAO;
 import com.microsoft.kdh.domain.BoardEventDTO;
@@ -40,10 +41,12 @@ public class BoardEventListen extends HttpServlet {
 		BoardEventDAO dao = new BoardEventDAO();
 		BoardEventDTO dto = new BoardEventDTO(type, b_num, m_id);
 		if(dao.alreadyEvent(dto)) {
-			response.getWriter().print("실패");
+			Integer result = dao.getTotal(b_num, type);
+			response.getWriter().print(-1);
 		} else {
 			dao.eventListener(dto);
-			response.getWriter().print("성공");
+			Integer result = dao.getTotal(b_num, type);
+			response.getWriter().print(result);
 		}
 		
 	}

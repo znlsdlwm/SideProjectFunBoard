@@ -103,11 +103,11 @@
 				<div class="fr">
 					<table>
 						<tr>
-							<td>${total.b_good_total}</td>
+							<td id="b_good">${total.b_good_total}</td>
 							<td><a class="btn btn-primary btn-lg" role="button" onclick="boardEventListener('${login.id}','${dto.num}','b_good', '추천')"><span class="material-icons">thumb_up</span></a></td>
-							<td>${total.b_bad_total}</td>
+							<td id="b_bad">${total.b_bad_total}</td>
 							<td><a class="btn btn-danger btn-lg" role="button" onclick="boardEventListener('${login.id}','${dto.num}','b_bad', '비추천')"><span class="material-icons">thumb_down</span></a></td>
-							<td>${total.b_warning_total}</td>
+							<td id="b_warning">${total.b_warning_total}</td>
 							<td><a class="btn btn-warning btn-lg" role="button" onclick="boardEventListener('${login.id}','${dto.num}','b_warning', '신고')"><span class="material-icons">report</span></a></td>
 						</tr>
 					</table>
@@ -178,10 +178,11 @@
 						type : type
 					},
 					success : function(result) {
-						if(result=='성공'){
-							alert(value+"하셨습니다.");
-						} else {
+						if(result==-1){
 							alert("한번만 가능합니다.");
+						} else {
+							alert(value+"하셨습니다.");
+							$("#"+type).text(result);
 						}
 					}
 				});

@@ -50,6 +50,27 @@ public class BoardEventDAO {
 		}
 		return total;
 	}
+	public Integer getTotal(int b_num, String type) {
+		Integer result = null;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "select " + type + "_total from b_eventTotal where b_num=?";
+		try {
+			conn = dataFactory.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, b_num);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				result = rs.getInt(1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			clossAll(rs, pstmt, conn);
+		}
+		return result;
+	}
 	public void eventListener(BoardEventDTO dto) {
 		boolean isOk = false;
 		Connection conn = null;
