@@ -20,7 +20,7 @@
 	<nav class="navbar navbar-expand-md navbar-dark bg-dark">
 		<a class="navbar-brand" href="home.kdh">KDH의 홈페이지</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
-			data-target="#navbars01" aria-controls="navbars01"
+			data-target="#navbars01" aria-controls="navbars01"	
 			aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
 		</button>
@@ -53,45 +53,65 @@
 			<a href="listboard.kdh" role="button">기본 게시판</a>
 		</div>
 	</div>
+	
 	<div class="container jumbotron">
-		<div class="" id="mg-bottom_0">
-			<div class="container jumbotron mg-auto_10">
-				<div><b>제목: ${dto.title}</b></div>  
-				<div class="fr mg-right_32">글번호: ${dto.num} </div>
-				<div class="fl">작성자: ${dto.writer}</div>
-				<div class="fr" style="margin-right: 10%;">조회수: ${dto.readcnt}</div>
-				<div class="fr" style="margin-right: 10%;">작성날짜: ${dto.writeDay}</div>
-			</div>
-		</div>
-		<div class=" pd-bottom-32 pd-top-32">
-			<div class="container jumbotron">${dto.content}</div>
-		</div>
-		<div id="newjumbotron" class="pd-bottom-32 pd-top-32">
 			<div class="container">
-				${total.b_good_total}
-				${total.b_bad_total}
-				${total.b_warning_total}
-			</div>
-		</div>	
-		<div id="newjumbotron" class="pd-bottom-64 pd-top-16">	
-			<div class="fl">
-				<div class="container">
-					<a class="fl btn btn-info btn-lg" role="button" href="replyboardui.kdh?num=${dto.num}">답글</a>
-					<a class="fl btn btn-info btn-lg" role="button" href="listboard.kdh">목록</a>
-					<a class="fl btn btn-primary btn-lg" role="button" onclick="boardEventListener('${login.id}','${dto.num}','b_good', '추천')"><span class="material-icons">thumb_up</span></a>
-					<a class="fl btn btn-danger btn-lg" role="button" onclick="boardEventListener('${login.id}','${dto.num}','b_bad', '비추천')"><span class="material-icons">thumb_down</span></a>
-					<a class="fl btn btn-info btn-lg" role="button" onclick="boardEventListener('${login.id}','${dto.num}','b_warning', '신고')"><span class="material-icons">report</span></a>
+			<table class="board_view">
+		        <colgroup>
+		            <col width="15%">
+		            <col width="35%">
+		            <col width="15%">
+		            <col width="*">
+		        </colgroup>
+		        <tbody>
+		            <tr>
+		                <th>제목</th>
+		                <td>${dto.title}</td>
+		                <th>조회수</th>
+		                <td>${dto.readcnt}</td>
+		            </tr>
+		            <tr>
+		                <th>작성자</th>
+		                <td>${dto.writer}</td>
+		                <th>작성시간</th>
+		                <td>${dto.writeDay}</td>
+		            </tr>
+		            <tr>
+		                <td colspan="4">
+		                   ${dto.content}
+		                </td>
+		            </tr>
+		        </tbody>
+		    </table>
+		
+		
+		<div class="mg-t-16 mg-b-16">
+			<div>
+				<a class="btn btn-info btn-lg" role="button" href="replyboardui.kdh?num=${dto.num}">답글</a>
+				<a class="btn btn-info btn-lg" role="button" href="listboard.kdh">목록</a>
+				<div class="fr">
 					<c:if test="${login.id eq dto.writer}">
-						<a class="fr btn btn-secondary btn-lg" role="button"
-							href="updateboardui.kdh?num=${dto.num}">수정</a>
-						<a class="fr btn btn-secondary btn-lg" role="button"
-							href="deleteboardui.kdh?num=${dto.num}">삭제</a>
+						<a class="btn btn-secondary btn-lg" role="button"href="updateboardui.kdh?num=${dto.num}">수정</a>
+						<a class="btn btn-secondary btn-lg" role="button"href="deleteboardui.kdh?num=${dto.num}">삭제</a>
 					</c:if>
 				</div>
 			</div>
 		</div>
+		
+		<div class="mg-t-16 mg-b-16">
+			<div>
+				${total.b_good_total}
+				${total.b_bad_total}
+				${total.b_warning_total}
+				<div class="fr">
+					<a class="btn btn-primary btn-lg" role="button" onclick="boardEventListener('${login.id}','${dto.num}','b_good', '추천')"><span class="material-icons">thumb_up</span></a>
+					<a class="btn btn-danger btn-lg" role="button" onclick="boardEventListener('${login.id}','${dto.num}','b_bad', '비추천')"><span class="material-icons">thumb_down</span></a>
+					<a class="btn btn-warning btn-lg" role="button" onclick="boardEventListener('${login.id}','${dto.num}','b_warning', '신고')"><span class="material-icons">report</span></a>
+				</div>
+			</div>
+		</div>
 	
-		<div class="row pd-bottom-32 pd-top-32">
+		<div class="container row pd-bottom-32 pd-top-32">
 			<div class="container">
 				<form action="insertcommentboard.kdh" method="post">
 				<input type="hidden" name="num"  value="${param.num}" readonly="readonly">
@@ -108,12 +128,10 @@
 						<textarea class="col-sm-12" rows="3" name="c_content" placeholder="내용을 입력해 주세요"></textarea>
 					</div> 
 				</div>
-				<div class="row fr">
-					<div class="col-sm-4">
-						<input class="col-sm-12 btn btn-success" type="submit" value="등록">
-					</div>
-					<div class="col-sm-4">
-						<a class="col-sm-12 btn btn-danger" role="button" href="readboard.kdh?num=${dto.num}">취소</a>
+				<div class="row container">
+					<div class="frm fr">
+						<input class="btn btn-success" type="submit" value="등록">
+						<a class="btn btn-danger" role="button" href="readboard.kdh?num=${dto.num}">취소</a>
 					</div>
 				</div>
 				</form>
@@ -136,7 +154,7 @@
 					<form action="deleteuicommentboard.kdh" method="post">
 						<input type="hidden" name="c_num" value="${c.c_num}">
 						<input type="hidden" name="num" value="${param.num}">
-						<input class="btn btn-danger btn-sm" type="submit" value="❌">
+						<input class="btn btn-danger" type="submit" value="❌">
 					</form>
 				</c:forEach>
 			</div>
