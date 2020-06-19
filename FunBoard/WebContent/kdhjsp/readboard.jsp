@@ -98,20 +98,24 @@
 			</div>
 		</div>
 		
-		<div class="mg-t-16 mg-b-16">
+		<div class="mg-t-16 mg-b-16 h-64">
 			<div>
-				${total.b_good_total}
-				${total.b_bad_total}
-				${total.b_warning_total}
 				<div class="fr">
-					<a class="btn btn-primary btn-lg" role="button" onclick="boardEventListener('${login.id}','${dto.num}','b_good', '추천')"><span class="material-icons">thumb_up</span></a>
-					<a class="btn btn-danger btn-lg" role="button" onclick="boardEventListener('${login.id}','${dto.num}','b_bad', '비추천')"><span class="material-icons">thumb_down</span></a>
-					<a class="btn btn-warning btn-lg" role="button" onclick="boardEventListener('${login.id}','${dto.num}','b_warning', '신고')"><span class="material-icons">report</span></a>
+					<table>
+						<tr>
+							<td>${total.b_good_total}</td>
+							<td><a class="btn btn-primary btn-lg" role="button" onclick="boardEventListener('${login.id}','${dto.num}','b_good', '추천')"><span class="material-icons">thumb_up</span></a></td>
+							<td>${total.b_bad_total}</td>
+							<td><a class="btn btn-danger btn-lg" role="button" onclick="boardEventListener('${login.id}','${dto.num}','b_bad', '비추천')"><span class="material-icons">thumb_down</span></a></td>
+							<td>${total.b_warning_total}</td>
+							<td><a class="btn btn-warning btn-lg" role="button" onclick="boardEventListener('${login.id}','${dto.num}','b_warning', '신고')"><span class="material-icons">report</span></a></td>
+						</tr>
+					</table>
 				</div>
 			</div>
 		</div>
 	
-		<div class="container row pd-bottom-32 pd-top-32">
+		<div class="container row mg-t-16 mg-b-16">
 			<div class="container">
 				<form action="insertcommentboard.kdh" method="post">
 				<input type="hidden" name="num"  value="${param.num}" readonly="readonly">
