@@ -61,7 +61,7 @@ public class BoardEventDAO {
 			else
 				insertEvent(conn, dto);
 			
-			if (countEvent(conn, dto) != 0)
+			if (countEvent(conn, dto) != null)
 				increaseCntEvent(conn, dto);
 			else
 				createCntEvent(conn, dto);
@@ -107,8 +107,6 @@ public class BoardEventDAO {
 			rs = pstmt.executeQuery();
 			if (rs.next())
 				cnt = rs.getInt(1);
-			if (cnt == null)
-				cnt = 0;
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
