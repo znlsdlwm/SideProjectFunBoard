@@ -9,12 +9,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.microsoft.kdh.command.Command;
 import com.microsoft.kdh.command.CommandAction;
-import com.microsoft.kdh.command.EventTotal;
 import com.microsoft.kdh.dao.BoardDAO;
 import com.microsoft.kdh.dao.BoardEventDAO;
 import com.microsoft.kdh.dao.CommentDAO;
 import com.microsoft.kdh.domain.BoardDTO;
 import com.microsoft.kdh.domain.CommentDTO;
+import com.microsoft.kdh.domain.EventTotal;
 
 public class ReadBoardCommand implements Command {
 
@@ -38,6 +38,7 @@ public class ReadBoardCommand implements Command {
 		EventTotal total = Edao.getTotal(num);
 		request.setAttribute("total", total);
 		
+		request.setAttribute("comment", "comment");
 		return new CommandAction(false, "/kdhjsp/readboard.jsp");
 	}
 

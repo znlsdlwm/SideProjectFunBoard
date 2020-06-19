@@ -1,4 +1,4 @@
-package com.microsoft.kdh.command;
+package com.microsoft.kdh.domain;
 
 public class EventTotal {
 	private int b_num;
