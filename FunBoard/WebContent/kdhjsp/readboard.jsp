@@ -87,7 +87,7 @@
 		
 			<div class="mg-t-16 mg-b-16">
 				<div>
-					<a class="btn btn-info btn-lg" role="button" href="replyboardui.kdh?num=${dto.num}">답글</a>
+					<a class="btn btn-info btn-lg" role="button" onclick="canRep('${login.id}','${dto.num}')">답글</a>
 					<a class="btn btn-info btn-lg" role="button" href="listboard.kdh">목록</a>
 					<div class="fr">
 						<c:if test="${login.id eq dto.writer}">
@@ -166,6 +166,14 @@
 		</div>
 	</div>
 	<script type="text/javascript">
+		function canRep(login, num) {
+			if(login==''){
+				alert("로그인 후에 이용할 수 있습니다.");
+			} else {
+				$(location).attr('href','replyboardui.kdh?num='+num);
+			}
+		}
+		
 		function boardEventListener(login, num, type, value) {
 			if(login==''){
 				alert("로그인 후에 이용할 수 있습니다.");
