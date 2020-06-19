@@ -10,8 +10,8 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
-import com.microsoft.kdh.command.EventTotal;
 import com.microsoft.kdh.domain.BoardEventDTO;
+import com.microsoft.kdh.domain.BoardEventCNT;
 
 public class BoardEventDAO {
 	private DataSource dataFactory;
@@ -26,8 +26,8 @@ public class BoardEventDAO {
 	}
 
 	// public
-	public EventTotal getTotal(int b_num) {
-		EventTotal total = null;
+	public BoardEventCNT getTotal(int b_num) {
+		BoardEventCNT total = null;
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -41,7 +41,7 @@ public class BoardEventDAO {
 				Integer good = rs.getInt("b_good_total");
 				Integer bad = rs.getInt("b_bad_total");
 				Integer warning = rs.getInt("b_warning_total");
-				total = new EventTotal(b_num, good, bad, warning);
+				total = new BoardEventCNT(b_num, good, bad, warning);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
