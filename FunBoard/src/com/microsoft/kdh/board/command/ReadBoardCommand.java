@@ -14,7 +14,7 @@ import com.microsoft.kdh.dao.BoardEventDAO;
 import com.microsoft.kdh.dao.CommentDAO;
 import com.microsoft.kdh.domain.BoardDTO;
 import com.microsoft.kdh.domain.CommentDTO;
-import com.microsoft.kdh.domain.EventTotal;
+import com.microsoft.kdh.domain.BoardEventCNT;
 
 public class ReadBoardCommand implements Command {
 
@@ -35,7 +35,7 @@ public class ReadBoardCommand implements Command {
 		request.setAttribute("c_list", c_list);
 		// 게시글 추가 정보
 		BoardEventDAO Edao = new BoardEventDAO();
-		EventTotal total = Edao.getTotal(num);
+		BoardEventCNT total = Edao.getTotal(num);
 		request.setAttribute("total", total);
 		
 		request.setAttribute("comment", "comment");

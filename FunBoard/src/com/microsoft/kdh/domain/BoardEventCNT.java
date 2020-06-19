@@ -1,14 +1,14 @@
 package com.microsoft.kdh.domain;
 
-public class EventTotal {
+public class BoardEventCNT {
 	private int b_num;
 	private int b_good_total;
 	private int b_bad_total;
 	private int b_warning_total;
-	public EventTotal() {
+	public BoardEventCNT() {
 		// TODO Auto-generated constructor stub
 	}
-	public EventTotal(int b_num, int b_good_total, int b_bad_total, int b_warning_total) {
+	public BoardEventCNT(int b_num, int b_good_total, int b_bad_total, int b_warning_total) {
 		super();
 		this.b_num = b_num;
 		this.b_good_total = b_good_total;
