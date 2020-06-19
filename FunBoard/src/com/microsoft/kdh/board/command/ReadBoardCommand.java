@@ -12,6 +12,7 @@ import com.microsoft.kdh.command.CommandAction;
 import com.microsoft.kdh.dao.BoardDAO;
 import com.microsoft.kdh.dao.BoardEventDAO;
 import com.microsoft.kdh.dao.CommentDAO;
+import com.microsoft.kdh.domain.AnswerEventCNT;
 import com.microsoft.kdh.domain.BoardDTO;
 import com.microsoft.kdh.domain.CommentDTO;
 import com.microsoft.kdh.domain.BoardEventCNT;
@@ -37,8 +38,6 @@ public class ReadBoardCommand implements Command {
 		BoardEventDAO Edao = new BoardEventDAO();
 		BoardEventCNT total = Edao.getTotal(num);
 		request.setAttribute("total", total);
-		
-		request.setAttribute("comment", "comment");
 		return new CommandAction(false, "/kdhjsp/readboard.jsp");
 	}
 
