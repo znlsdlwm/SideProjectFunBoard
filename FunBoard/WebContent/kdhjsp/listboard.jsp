@@ -100,7 +100,8 @@
 		</div>
 	</div>
 	<div class="container">
-		<ul class="pagination container page">
+		<div>
+		<ul class="pagination page">
 			<c:if test="${to.curPage>1}">
 				<li class="page-item"><a class="page-link"
 					href="listboard.kdh?query=${query}&curPage=${1}">처음으로</a></li>
@@ -129,6 +130,7 @@
 					href="listboard.kdh?query=${query}&curPage=${to.totalPage}">끝으로</a></li>
 			</c:if>
 		</ul>
+		</div>
 	</div>
 	<script type="text/javascript">
 		function canWrite(login) {

@@ -71,9 +71,7 @@ padding: 6px 12px;
 width: 250px; 
 }
 .page{
-left: 180%;
-margin-left: -150%;
-position: fixed;
+justify-content: center;
 }
 
 <!-- color -->
