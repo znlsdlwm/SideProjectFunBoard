@@ -55,7 +55,7 @@
 	</div>
 	
 	<div class="container jumbotron">
-			<div class="container">
+		<div class="container">
 			<table class="board_view">
 		        <colgroup>
 		            <col width="15%">
@@ -85,82 +85,83 @@
 		    </table>
 		
 		
-		<div class="mg-t-16 mg-b-16">
-			<div>
-				<a class="btn btn-info btn-lg" role="button" href="replyboardui.kdh?num=${dto.num}">답글</a>
-				<a class="btn btn-info btn-lg" role="button" href="listboard.kdh">목록</a>
-				<div class="fr">
-					<c:if test="${login.id eq dto.writer}">
-						<a class="btn btn-secondary btn-lg" role="button"href="updateboardui.kdh?num=${dto.num}">수정</a>
-						<a class="btn btn-secondary btn-lg" role="button"href="deleteboardui.kdh?num=${dto.num}">삭제</a>
-					</c:if>
+			<div class="mg-t-16 mg-b-16">
+				<div>
+					<a class="btn btn-info btn-lg" role="button" href="replyboardui.kdh?num=${dto.num}">답글</a>
+					<a class="btn btn-info btn-lg" role="button" href="listboard.kdh">목록</a>
+					<div class="fr">
+						<c:if test="${login.id eq dto.writer}">
+							<a class="btn btn-secondary btn-lg" role="button"href="updateboardui.kdh?num=${dto.num}">수정</a>
+							<a class="btn btn-secondary btn-lg" role="button"href="deleteboardui.kdh?num=${dto.num}">삭제</a>
+						</c:if>
+					</div>
 				</div>
 			</div>
-		</div>
+			
+			<div class="mg-t-16 mg-b-16 h-64">
+				<div>
+					<div class="fr">
+						<table>
+							<tr>
+								<td id="b_good">${total.b_good_total}</td>
+								<td><a class="btn btn-primary btn-lg" role="button" onclick="boardEventListener('${login.id}','${dto.num}','b_good', '추천')"><span class="material-icons">thumb_up</span></a></td>
+								<td id="b_bad">${total.b_bad_total}</td>
+								<td><a class="btn btn-danger btn-lg" role="button" onclick="boardEventListener('${login.id}','${dto.num}','b_bad', '비추천')"><span class="material-icons">thumb_down</span></a></td>
+								<td id="b_warning">${total.b_warning_total}</td>
+								<td><a class="btn btn-warning btn-lg" role="button" onclick="boardEventListener('${login.id}','${dto.num}','b_warning', '신고')"><span class="material-icons">report</span></a></td>
+							</tr>
+						</table>
+					</div>
+				</div>
+			</div>
 		
-		<div class="mg-t-16 mg-b-16 h-64">
-			<div>
-				<div class="fr">
-					<table>
-						<tr>
-							<td id="b_good">${total.b_good_total}</td>
-							<td><a class="btn btn-primary btn-lg" role="button" onclick="boardEventListener('${login.id}','${dto.num}','b_good', '추천')"><span class="material-icons">thumb_up</span></a></td>
-							<td id="b_bad">${total.b_bad_total}</td>
-							<td><a class="btn btn-danger btn-lg" role="button" onclick="boardEventListener('${login.id}','${dto.num}','b_bad', '비추천')"><span class="material-icons">thumb_down</span></a></td>
-							<td id="b_warning">${total.b_warning_total}</td>
-							<td><a class="btn btn-warning btn-lg" role="button" onclick="boardEventListener('${login.id}','${dto.num}','b_warning', '신고')"><span class="material-icons">report</span></a></td>
-						</tr>
-					</table>
-				</div>
-			</div>
-		</div>
-	
-		<div class="container row mg-t-16 mg-b-16">
-			<div class="container">
-				<form action="insertcommentboard.kdh" method="post">
-				<input type="hidden" name="num"  value="${param.num}" readonly="readonly">
-				<div class="row">
-					<div class="col-sm-2 fr">
-						<div class="row">
-							<input type="text" name="c_writer" placeholder="닉네임">
+			<div class="container row mg-t-16 mg-b-16">
+				<div class="container">
+					<form action="insertcommentboard.kdh" method="post">
+					<input type="hidden" name="num"  value="${param.num}" readonly="readonly">
+					<div class="row">
+						<div class="col-sm-2 fr">
+							<div class="row">
+								<input type="text" name="c_writer" placeholder="닉네임" value="${A_Login.id}" required="required">
+							</div>
+							<div class="row">
+								<input type="password" name="c_password" placeholder="비밀번호" value="${A_login.pw}" required="required">
+							</div>
 						</div>
-						<div class="row">
-							<input type="password" name="c_password" placeholder="비밀번호">
+						<div class="col-sm-10">
+							<textarea class="col-sm-12" rows="3" name="c_content" placeholder="내용을 입력해 주세요" required="required"></textarea>
+						</div> 
+					</div>
+					<div class="row container">
+						<div class="frm fr">
+							<input class="btn btn-success" type="submit" value="등록">
+							<a class="btn btn-danger" role="button" href="readboard.kdh?num=${dto.num}">취소</a>
 						</div>
 					</div>
-					<div class="col-sm-10">
-						<textarea class="col-sm-12" rows="3" name="c_content" placeholder="내용을 입력해 주세요"></textarea>
-					</div> 
-				</div>
-				<div class="row container">
-					<div class="frm fr">
-						<input class="btn btn-success" type="submit" value="등록">
-						<a class="btn btn-danger" role="button" href="readboard.kdh?num=${dto.num}">취소</a>
-					</div>
-				</div>
-				</form>
-			</div>
-		</div>
-		<div id="newjumbotron" class="pd-top-32">
-			<div class="container">
-				<c:forEach items="${c_list}" var="c">
-					${c.c_num}
-					${c.c_writer}
-					${c.c_content}
-					${c.c_password} 
-					${c.c_writeday} 
-					${c.c_good} 
-					${c.c_bad}
-					${c.c_warning} 
-					${c.c_root} 
-					${c.c_step}
-					${c.c_indent}<br>
-					<form action="deleteuicommentboard.kdh" method="post">
-						<input type="hidden" name="c_num" value="${c.c_num}">
-						<input type="hidden" name="num" value="${param.num}">
-						<input class="btn btn-danger" type="submit" value="❌">
 					</form>
-				</c:forEach>
+				</div>
+			</div>
+			<div id="newjumbotron" class="pd-top-32">
+				<div class="container">
+					<c:forEach items="${c_list}" var="c">
+						${c.c_num}
+						${c.c_writer}
+						${c.c_content}
+						${c.c_password} 
+						${c.c_writeday} 
+						${c.c_good} 
+						${c.c_bad}
+						${c.c_warning} 
+						${c.c_root} 
+						${c.c_step}
+						${c.c_indent}<br>
+						<form action="deleteuicommentboard.kdh" method="post">
+							<input type="hidden" name="c_num" value="${c.c_num}">
+							<input type="hidden" name="num" value="${param.num}">
+							<input class="btn btn-danger" type="submit" value="❌">
+						</form>
+					</c:forEach>
+				</div>
 			</div>
 		</div>
 	</div>
