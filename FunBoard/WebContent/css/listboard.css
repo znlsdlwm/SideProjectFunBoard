@@ -1,6 +1,5 @@
 a:link, a:visited {text-decoration: none; color: #333;}
 .btn {border-radius:3px;padding:5px 11px;color:#fff !important; display:inline-block; background-color:#4e5ef2;margin-left:3px;border:1px solid #4e5ef2;vertical-align:middle}
-
 .board_list {width:100%;border-top:2px solid #252525;border-bottom:1px solid #ccc;text-align: center;}
 .board_list thead th:first-child{width: 60px;height: 26px;text-align: center;}
 /*
@@ -185,7 +184,3 @@ float: right;
 .mg-l-16{margin-left: 16px;}
 .mg-l-32{margin-left: 32px;}
 .mg-l-64{margin-left: 64px;}
-.newjumbotron{
-background-color: #e9ecef;
-border-radius: 3rem;
-}
