@@ -41,7 +41,6 @@ public class BoardEventListen extends HttpServlet {
 		BoardEventDAO dao = new BoardEventDAO();
 		BoardEventDTO dto = new BoardEventDTO(type, b_num, m_id);
 		if(dao.alreadyEvent(dto)) {
-			Integer result = dao.getTotal(b_num, type);
 			response.getWriter().print(-1);
 		} else {
 			dao.eventListener(dto);
