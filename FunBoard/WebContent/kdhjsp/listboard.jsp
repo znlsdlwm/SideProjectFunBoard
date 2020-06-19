@@ -63,7 +63,7 @@
 				</select>
 				<input class="q" name="query">
 				<input class="btn wrting" type="submit" value="검색">
-				<a class="btn wrting" role="button" href="./insertboardui.kdh">글쓰기</a>
+				<a class="btn wrting" role="button" onclick="canWrite('${login.id}')" >글쓰기</a>
 			</form>
 		</div>
 		<div class="container">
@@ -130,5 +130,14 @@
 			</c:if>
 		</ul>
 	</div>
+	<script type="text/javascript">
+		function canWrite(login) {
+			if(login==''){
+				alert("로그인 후에 이용할 수 있습니다.");
+			} else {
+				$(location).attr('href','insertboardui.kdh');
+			}
+		}
+	</script>
 </body>
 </html>
