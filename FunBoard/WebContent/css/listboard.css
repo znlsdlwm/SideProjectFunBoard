@@ -157,6 +157,12 @@ float: right;
 	padding-bottom: 10px;
 }
 <!-- mystyle -->
+.h-16{height: 16px;}
+.h-32{height: 32px;}
+.h-64{height: 64px;}
+.w-16{height: 16px;}
+.w-32{height: 32px;}
+.w-64{height: 64px;}
 .pd-t-16{padding-top: 16px;}
 .pd-t-32{padding-top: 32px;}
 .pd-t-64{padding-top: 64px;}
