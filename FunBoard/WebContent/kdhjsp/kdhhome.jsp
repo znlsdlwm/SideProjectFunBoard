@@ -64,8 +64,8 @@
 		<br>
 		<br>
 		<br> <br> <a href="home.main">모두의 메인으로</a>
-	
-	<div class="jumbotron container display-flex">
+		<br> <br>
+	<div class="jumbotron display-flex">
 			<div class="col-sm-6">
 				<h2>가장 높은 조회수 게시글</h2>
 				<table border="1" class="table table-striped table-hover board_list">
