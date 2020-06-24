@@ -24,9 +24,6 @@ public class JBoardDAO {
 		}
 	}
 	
-	
-	
-	
 	public PageTO page(int curPage) {
 		String sql ="select * from (select rownum rnum, num, title, writer, writeday, readcnt, repIndent from(select*from board order by repRoot desc, repStep asc)) where rnum>= ? and rnum<= ?";
 		PageTO to = new PageTO(curPage);
@@ -131,7 +128,8 @@ public class JBoardDAO {
 		}
 		return num;
 	}
-
+	
+	
 	public JBoardDTO read(int num) {
 		JBoardDTO dto = null;
 		Connection conn = null;
@@ -154,9 +152,6 @@ public class JBoardDAO {
 				String content =rs.getString("content");
 				String writeday = rs.getString("writeday");
 				int readcnt = rs.getInt("readcnt");
-				int repRoot = rs.getInt("repRoot");
-				int repStep = rs.getInt("repStep");
-				int repIndent = rs.getInt("repIndent");
 				
 				dto = new JBoardDTO(num, writer, title, content, writeday, readcnt, 0, 0, 0);
 				isok = true;
@@ -266,5 +261,11 @@ public class JBoardDAO {
 			e.printStackTrace();
 		}
 	}
+
+
+
+
+
+
 
 }

@@ -68,12 +68,11 @@ public class FrontController extends HttpServlet {
 		} else if (sp.equalsIgnoreCase("/Logout.kjm")) {
 			com = new JLogoutCommand();
 		} else if (sp.equalsIgnoreCase("/LogDelete.kjm")) {
-	    	com = new JLogDeleteCommand();
+	    	com = new JLogDeleteCommand();		
 //보류		}else if(sp.equalsIgnoreCase("/replyui.do")) {
 //보류				com= new ReplyUICommand();
 //보류		}else if(sp.equalsIgnoreCase("/reply.do")) {
 //보류		com= new ReplyCommand();
-		
 		
 		}else {
 			System.out.println("제공하지 않는 서비스입니다.");
