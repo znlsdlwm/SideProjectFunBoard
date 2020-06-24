@@ -10,7 +10,7 @@ ALTER TABLE board add(
 good number(4) default 0,
 bad number(4) default 0
 )
-
+ALTER TABLE board drop COLUMN bad
 
 
 select * from board order by repRoot desc, repStep

@@ -134,7 +134,7 @@ public class BoardDAO {
 				+ "select rownum rnum, num, title, writer, writeday, readcnt, repIndent, repRoot, repStep from ("
 				+ "select * from board where title like ? order by repRoot desc , repStep)) "
 				+ "where rnum>=? and rnum<=?";
-		return jdbcTemplate.query(con -> {
+		Object isNull = jdbcTemplate.query(con -> {
 			int amount = getAmountTitle(con, query);
 			to.setAmount(amount);
 			PreparedStatement pstmt = con.prepareStatement(sql);
@@ -146,11 +146,10 @@ public class BoardDAO {
 			list.add(new BoardDTO(rs.getInt("num"), rs.getString("writer"), rs.getString("title"), null,
 					rs.getString("writeday"), rs.getInt("readcnt"), rs.getInt("repRoot"), rs.getInt("repStep"),
 					rs.getInt("repIndent")));
-			to.setList(list);
-			return to;
-
+			return null;
 		});
-
+		to.setList(list);
+		return to;
 	}
 
 	public BoardDTO read(int num) {
@@ -255,6 +254,7 @@ public class BoardDAO {
 			pstmt.setInt(2, num);
 			return pstmt;
 		}, rs -> {
+			rs.getInt("num");
 			if (rs.wasNull())
 				return false;
 			else
@@ -287,7 +287,8 @@ public class BoardDAO {
 //			clossAll(null, pstmt, conn);
 //		}
 //		return num;
-		String sql = "insert into board(num,writer,title,content,repRoot,repStep,repIndent)";
+		String sql = "insert into board(num,writer,title,content,repRoot,repStep,repIndent)"
+					+ " values (?,?,?,?,?,?,?)";
 		jdbcTemplate.update(con -> {
 			PreparedStatement pstmt = con.prepareStatement(sql);
 			int num = createNum(con);
@@ -575,7 +576,7 @@ public class BoardDAO {
 		return jdbcTemplate.queryForOnce(conn, con->{
 			return conn.prepareStatement("select max(num) num from board");
 		}, rs->{
-			Integer num = rs.getInt(1);
+			Integer num = new Integer(rs.getInt(1));
 			num += 1;
 			return num;
 		});
