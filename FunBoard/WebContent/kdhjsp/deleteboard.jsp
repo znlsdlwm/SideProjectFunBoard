@@ -47,17 +47,22 @@
 			</form>
 		</div>
 	</nav>
-	<div class="jumbotron" id="listBoardHomeDiv">
-		<a class="listBoardHome" href="listboard.kdh" role="button">기본 게시판</a>
+	<div class="page_head">
+		<div class="container">
+			<a href="listboard.kdh" role="button">기본 게시판</a>
+		</div>
 	</div>
-	<div class="jumbotron">
-		<form action="deleteboard.kdh" method="post">
-			<input type="hidden" name="num" value="${param.num}"
-				readonly="readonly"> <p><b>정말로 삭제하시겠습니까?</b></p> 
-				<input class="btn btn-success btn-lg" type="submit"
-				value="예">
-			<a class="btn btn-danger btn-lg" href="listboard.kdh" role="button">아니오</a>
-		</form>
+	
+	<div class="container jumbotron">
+		<div class="container">
+			<form action="deleteboard.kdh" method="post">
+				<input type="hidden" name="num" value="${param.num}"
+					readonly="readonly"> <p><b>정말로 삭제하시겠습니까?</b></p> 
+					<input class="btn btn-success btn-lg" type="submit"
+					value="예">
+				<a class="btn btn-danger btn-lg" href="listboard.kdh" role="button">아니오</a>
+			</form>
+		</div>
 	</div>
 </body>
 </html>
