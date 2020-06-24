@@ -14,8 +14,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="./js/bootstrap.min.js"></script>
-<style type="text/css">
-</style>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
 	<nav class="navbar navbar-expand-md navbar-dark bg-dark">
@@ -65,6 +64,77 @@
 		<br>
 		<br>
 		<br> <br> <a href="home.main">모두의 메인으로</a>
-	</div>
+	
+	<div class="jumbotron container display-flex">
+			<div class="col-sm-6">
+				<h2>가장 높은 조회수 게시글</h2>
+				<table border="1" class="table table-striped table-hover board_list">
+					<colgroup>
+				        <col width="*"/>
+				        <col width="18%"/>
+				        <col width="18%"/>
+				        <col width="10%"/>
+				        <col width="10%"/>
+				    </colgroup>
+				    <thead>
+						<tr>
+							<th>글제목</th>
+							<th>글쓴이</th>
+							<th>조회수</th>
+							<th><span class="material-icons">thumb_up</span></th>
+							<th><span class="material-icons">thumb_down</span></th>
+						</tr>
+				    </thead>
+					<tbody>
+						<c:forEach items="${readcnt}" var="dto">
+							<tr>
+								<td class="title" width="300px">
+									<a href="readboard.kdh?num=${dto.num}">${dto.title}</a></td>
+								<td>${dto.writer}</td>
+								<td>${dto.readcnt}</td>
+								<td>${dto.b_good_total}</td>
+								<td>${dto.b_bad_total}</td>
+							</tr>
+						</c:forEach>
+					</tbody>
+				</table>
+			
+			</div>
+			<div class="col-sm-6">
+			<h2>추천수 가장 높은 게시글</h2>
+			<table border="1" class="table table-striped table-hover board_list">
+				 <colgroup>
+			        <col width="*"/>
+			        <col width="18%"/>
+			        <col width="18%"/>
+			        <col width="10%"/>
+			        <col width="10%"/>
+			    </colgroup>
+			    <thead>
+					<tr>
+						<th>글제목</th>
+						<th>글쓴이</th>
+						<th>조회수</th>
+						<th><span class="material-icons">thumb_up</span></th>
+						<th><span class="material-icons">thumb_down</span></th>
+					</tr>
+			    </thead>
+				<tbody>
+					<c:forEach items="${best}" var="dto">
+						<tr>
+							<td class="title" width="300px">
+								<a href="readboard.kdh?num=${dto.num}">${dto.title}</a></td>
+							<td>${dto.writer}</td>
+							<td>${dto.readcnt}</td>
+							<td>${dto.b_good_total}</td>
+							<td>${dto.b_bad_total}</td>
+						</tr>
+					</c:forEach>
+				</tbody>
+			</table>
+
+			</div>
+		</div>
+		</div>
 </body>
 </html>
