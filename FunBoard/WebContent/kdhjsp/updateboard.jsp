@@ -47,23 +47,28 @@
 			</form>
 		</div>
 	</nav>
-	<div class="jumbotron" id="listBoardHomeDiv">
-		<a class="listBoardHome" href="listboard.kdh" role="button">기본 게시판</a>
+	<div class="page_head">
+		<div class="container">
+			<a href="listboard.kdh" role="button">기본 게시판</a>
+		</div>
 	</div>
-	<div class="jumbotron">
-		<h1 class="listBoardHome">글 수정</h1>
-		<form action="updateboard.kdh" method="post">
-			<input type="hidden" name="num" value="${dto.num}"
-				readonly="readonly"><br> 글쓴이:<br>
-			<input name="writer" value="${dto.writer}" readonly="readonly"><br>
-			글제목:<br>
-			<input class="col-sm-4" name="title" value="${dto.title}"><br>
-			글내용:<br>
-			<textarea class="col-sm-4" name="content" rows="10" cols="50">${dto.content}</textarea>
-			<br> <input class="btn btn-primary btn-lg" type="submit"
-				value="확인"><a href="listboard.kdh" role="button"
-				class="btn btn-info btn-lg">목록으로</a>
-		</form>
+	
+	<div class="container jumbotron">
+		<div class="container">
+			<h1 class="listBoardHome">글 수정</h1>
+			<form action="updateboard.kdh" method="post">
+				<input type="hidden" name="num" value="${dto.num}"
+					readonly="readonly"><br> 글쓴이:<br>
+				<input name="writer" value="${dto.writer}" readonly="readonly"><br>
+				글제목:<br>
+				<input class="col-sm-4" name="title" value="${dto.title}"><br>
+				글내용:<br>
+				<textarea class="col-sm-4" name="content" rows="10" cols="50">${dto.content}</textarea>
+				<br> <input class="btn btn-primary btn-lg" type="submit"
+					value="확인"><a href="listboard.kdh" role="button"
+					class="btn btn-info btn-lg">목록으로</a>
+			</form>
+		</div>
 	</div>
 </body>
 </html>
