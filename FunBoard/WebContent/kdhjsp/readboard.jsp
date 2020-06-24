@@ -153,28 +153,9 @@
 											<input class="btn btn-danger" type="submit" value="❌">
 										</form>
 									</td>
-								<%--
-									<td id="c_good">${total.c_good_total}</td>
-									<td><a class="btn btn-primary btn-lg" role="button" onclick="commentventListener('${login.id}','${dto.num}','c_good', '추천')"><span class="material-icons">thumb_up</span></a></td>
-									<td id="c_bad">${total.c_bad_total}</td>
-									<td><a class="btn btn-danger btn-lg" role="button" onclick="commentEventListener('${login.id}','${dto.num}','c_bad', '비추천')"><span class="material-icons">thumb_down</span></a></td>
-									<td id="c_warning">${total.c_warning_total}</td>
-									<td><a class="btn btn-warning btn-lg" role="button" onclick="commentEventListener('${login.id}','${dto.num}','c_warning', '신고')"><span class="material-icons">report</span></a></td>
-								 --%> 
 								</tr>
 			   			    </tbody>
 						</table>
-						${c.c_num}
-						${c.c_writer}
-						${c.c_content}
-						${c.c_password} 
-						${c.c_writeday} 
-						${c.c_good} 
-						${c.c_bad}
-						${c.c_warning} 
-						${c.c_root} 
-						${c.c_step}
-						${c.c_indent}<br>
 					</c:forEach>
 				</div>
 			</div>
