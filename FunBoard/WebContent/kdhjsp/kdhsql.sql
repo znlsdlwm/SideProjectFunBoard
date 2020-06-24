@@ -4,6 +4,24 @@ select * from b_comment
 select * from b_event
 select * from b_eventTotal
 
+select * from (select rowNum, num, writer, title, Content, writeDay, readcnt, b_good_total, b_bad_total
+from board B
+left join  b_eventTotal ET
+on B.num = ET.b_num
+order by B.readcnt desc)
+where ROWNUM >= 1 AND ROWNUM <= 5
+
+select * from (select rowNum, num, writer, title, Content, writeDay, readcnt, b_good_total, b_bad_total from board B left join  b_eventTotal ET on B.num = ET.b_num order by B.readcnt desc) where ROWNUM >= 1 AND ROWNUM <= 5
+
+
+select * from (select rowNum, num, writer, title, Content, writeDay, readcnt, b_good_total, b_bad_total
+from board B
+right join  b_eventTotal ET
+on B.num = ET.b_num
+order by  ET.b_good_total desc, ET.b_bad_total)
+where ROWNUM >= 1 AND ROWNUM <= 5
+
+select * from(select rowNum, num, writer, title, Content, writeDay, readcnt, b_good_total, b_bad_total from board B right join  b_eventTotal ET on B.num = ET.b_num order by  ET.b_good_total desc, ET.b_bad_total) where ROWNUM >= 1 AND ROWNUM <= 5
 
 alter table b_comment add constraint fk_b_num foreign key(num) references board
 ALTER TABLE board add(

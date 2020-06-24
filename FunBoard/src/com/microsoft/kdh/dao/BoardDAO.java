@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.microsoft.kdh.domain.BoardDTO;
+import com.microsoft.kdh.domain.LookUpBoardDTO;
 import com.microsoft.kdh.domain.PageTO;
 import com.microsoft.kdh.template.JdbcTemplate;
 
@@ -18,6 +19,40 @@ public class BoardDAO {
 	}
 
 	// Read
+	public List<LookUpBoardDTO> getBest() {
+		List<LookUpBoardDTO> list = new ArrayList<LookUpBoardDTO>();
+		String sql = "select * from(select rowNum, num, writer, title, Content, writeDay, readcnt, b_good_total, b_bad_total from board B right join  b_eventTotal ET on B.num = ET.b_num order by  ET.b_good_total desc, ET.b_bad_total) where ROWNUM >= 1 AND ROWNUM <= 5";
+		Object isNull = jdbcTemplate.query(con->con.prepareStatement(sql), 
+				rs->{
+					list.add(new LookUpBoardDTO(rs.getInt("num"),
+									   rs.getString("writer"),
+									   rs.getString("title"), 
+									   rs.getString("content"),
+									   rs.getString("writeDay"), 
+									   rs.getInt("readcnt"), 
+									   rs.getInt("b_good_total"), 
+									   rs.getInt("b_bad_total")));
+					return null;
+				});
+		return list;
+	}
+	public List<LookUpBoardDTO> getMaxReadcnt() {
+		List<LookUpBoardDTO> list = new ArrayList<LookUpBoardDTO>();
+		String sql = "select * from (select rowNum, num, writer, title, Content, writeDay, readcnt, b_good_total, b_bad_total from board B left join  b_eventTotal ET on B.num = ET.b_num order by B.readcnt desc) where ROWNUM >= 1 AND ROWNUM <= 5";
+		Object isNull = jdbcTemplate.query(con->con.prepareStatement(sql), 
+				rs->{
+					list.add(new LookUpBoardDTO(rs.getInt("num"),
+									   rs.getString("writer"),
+									   rs.getString("title"), 
+									   rs.getString("content"),
+									   rs.getString("writeDay"), 
+									   rs.getInt("readcnt"), 
+									   rs.getInt("b_good_total"), 
+									   rs.getInt("b_bad_total")));
+					return null;
+				});
+		return list;
+	}
 	public PageTO searchWriter(int curPage, String query) {
 		PageTO to = new PageTO(curPage);
 		List<BoardDTO> list = new ArrayList<BoardDTO>();
@@ -123,7 +158,7 @@ public class BoardDAO {
 	// Create
 	public int insert(BoardDTO dto) {
 		String sql = "insert into board(num,writer,title,content,repRoot,repStep,repIndent)"
-					+ " values (?,?,?,?,?,?,?)";
+				+ " values (?,?,?,?,?,?,?)";
 		jdbcTemplate.update(con -> {
 			PreparedStatement pstmt = con.prepareStatement(sql);
 			int num = createNum(con);
@@ -143,28 +178,28 @@ public class BoardDAO {
 	public void reply(int orgnum, BoardDTO dto) {
 		String sql = "insert into board(num,writer,title,content,repRoot,repStep,repIndent)"
 				+ " values (?,?,?,?,?,?,?)";
-		jdbcTemplate.update(con->{
-				BoardDTO orgDTO = getAllAsNum(con, orgnum);
-				PreparedStatement pstmt = con.prepareStatement(sql);
-				pstmt.setInt(1, createNum(con));
-				pstmt.setString(2, dto.getWriter());
-				pstmt.setString(3, titleRePlus(orgDTO.getRepIndent() + 1) + dto.getTitle());
-				pstmt.setString(4, dto.getContent());
-				pstmt.setInt(5, orgDTO.getRepRoot());
-				int step = getMaxStep(con, orgDTO);
-				pstmt.setInt(6, step);
-				pstmt.setInt(7, orgDTO.getRepIndent() + 1);
-				repStepOthersPlus1(con, orgDTO, step);
-				return pstmt;
+		jdbcTemplate.update(con -> {
+			BoardDTO orgDTO = getAllAsNum(con, orgnum);
+			PreparedStatement pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, createNum(con));
+			pstmt.setString(2, dto.getWriter());
+			pstmt.setString(3, titleRePlus(orgDTO.getRepIndent() + 1) + dto.getTitle());
+			pstmt.setString(4, dto.getContent());
+			pstmt.setInt(5, orgDTO.getRepRoot());
+			int step = getMaxStep(con, orgDTO);
+			pstmt.setInt(6, step);
+			pstmt.setInt(7, orgDTO.getRepIndent() + 1);
+			repStepOthersPlus1(con, orgDTO, step);
+			return pstmt;
 		});
 	}
 
 	public BoardDTO getAllAsNum(Connection conn, int orgnum) {
-		return jdbcTemplate.queryForOnce(con->{
+		return jdbcTemplate.queryForOnce(con -> {
 			PreparedStatement pstmt = conn.prepareStatement("select * from board where num=?");
 			pstmt.setInt(1, orgnum);
 			return pstmt;
-		},rs -> {
+		}, rs -> {
 			return new BoardDTO(rs.getInt("num"), rs.getString("writer"), rs.getString("title"),
 					rs.getString("content"), null, rs.getInt("readcnt"), rs.getInt("repRoot"), rs.getInt("repStep"),
 					rs.getInt("repIndent"));
@@ -173,13 +208,13 @@ public class BoardDAO {
 
 	private int getMaxStep(Connection conn, BoardDTO orgDTO) {
 		String sql = "select NVL(max(repStep), -99) from board where repRoot= ? and repIndent =? and repstep>?";
-		return jdbcTemplate.queryForOnce(con->{
+		return jdbcTemplate.queryForOnce(con -> {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, orgDTO.getRepRoot());
 			pstmt.setInt(2, orgDTO.getRepIndent() + 1);
 			pstmt.setInt(3, orgDTO.getRepStep());
 			return pstmt;
-		}, rs->{
+		}, rs -> {
 			int replyStep = rs.getInt(1);
 			if (replyStep == -99)
 				replyStep = orgDTO.getRepStep() + 1;
@@ -189,7 +224,7 @@ public class BoardDAO {
 
 	private void repStepOthersPlus1(Connection conn, BoardDTO orgDTO, int step) {
 		String sql = "update board set repstep=repstep+1 where repRoot=? and repStep>=?";
-		jdbcTemplate.update(conn, con->{
+		jdbcTemplate.update(conn, con -> {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, orgDTO.getRepRoot());
 			pstmt.setInt(2, step);
@@ -209,7 +244,7 @@ public class BoardDAO {
 	// Delete
 	public void delete(int num) {
 		String sql = "delete from board where num=?";
-		jdbcTemplate.update(con->{
+		jdbcTemplate.update(con -> {
 			PreparedStatement pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, num);
 			return pstmt;
@@ -218,7 +253,7 @@ public class BoardDAO {
 
 	public void update(String writer, String title, String content, int num) {
 		String sql = "update board set writer=?,title=?,content=? where num=?";
-		jdbcTemplate.update(con->{
+		jdbcTemplate.update(con -> {
 			PreparedStatement pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, writer);
 			pstmt.setString(2, title);
@@ -229,25 +264,25 @@ public class BoardDAO {
 	}
 
 	private int getAmountTitle(Connection conn, String query) {
-		return jdbcTemplate.queryForOnce(con->{
+		return jdbcTemplate.queryForOnce(con -> {
 			PreparedStatement pstmt = conn.prepareStatement("select count(num) from board where title like ?");
 			pstmt.setString(1, "%" + query + "%");
 			return pstmt;
-		}, rs-> rs.getInt(1));
+		}, rs -> rs.getInt(1));
 	}
 
 	private int getAmountWriter(Connection conn, String query) {
-		return jdbcTemplate.queryForOnce(conn, con->{
+		return jdbcTemplate.queryForOnce(conn, con -> {
 			PreparedStatement pstmt = conn.prepareStatement("select count(num) from board where writer like ?");
 			pstmt.setString(1, "%" + query + "%");
 			return pstmt;
-		}, rs->rs.getInt(1));
+		}, rs -> rs.getInt(1));
 	}
 
 	public int createNum(Connection conn) {
-		return jdbcTemplate.queryForOnce(conn, con->{
+		return jdbcTemplate.queryForOnce(conn, con -> {
 			return conn.prepareStatement("select max(num) num from board");
-		}, rs->{
+		}, rs -> {
 			Integer num = new Integer(rs.getInt(1));
 			num += 1;
 			return num;
@@ -257,7 +292,7 @@ public class BoardDAO {
 	public int selectNum() {
 		return jdbcTemplate.queryForOnce(con -> {
 			return con.prepareStatement("select max(num) num from board");
-		}, rs->rs.getInt(1));
+		}, rs -> rs.getInt(1));
 	}
 
 }
