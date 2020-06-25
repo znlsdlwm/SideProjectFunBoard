@@ -10,11 +10,14 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<a href="home.kdh">kdh의 게시판</a><br>
-	<a href="home.kjm">kjm의 게시판</a><br>
-	<a href="home.ldk">ldk의 게시판</a><br>
-	<a href="l_select.sdj">sdj의 게시판</a><br>
-	<a href="home.asj">asj의 게시판</a><br>
-	<a href="home.rjs">rjs의 게시판</a><br>
+	<h1>회원 정보 수정</h1>
+	
+	<form action="update.bo" method="post">
+		ID: <input name="id" value="${dto.r_id}" readonly><br>
+		Name: <input name="name" value="${dto.r_name}"><br>
+		Age: <input name="age" value="${dto.r_age}" type="number"><br>
+		Pw: <input name="pw" type="password" required><br>
+		<input type="submit" value="수정">
+	</form>
 </body>
 </html>
