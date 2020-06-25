@@ -13,7 +13,7 @@
 	<a href="home.kdh">kdh의 게시판</a><br>
 	<a href="home.kjm">kjm의 게시판</a><br>
 	<a href="home.ldk">ldk의 게시판</a><br>
-	<a href="home.sdj">sdj의 게시판</a><br>
+	<a href="l_select.sdj">sdj의 게시판</a><br>
 	<a href="home.asj">asj의 게시판</a><br>
 	<a href="home.rjs">rjs의 게시판</a><br>
 </body>
