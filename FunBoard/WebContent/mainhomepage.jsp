@@ -10,11 +10,11 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<a href="kjm.main">김재민의 게시판 보기</a><br>
-	<a href="">신동준의 게시판 보기</a><br>
-	<a href="">공동현의 게시판 보기</a><br>
-	<a href="">이동규의 게시판 보기</a><br>
-	<a href="">유재석의 게시판 보기 </a><br>
-	<a href="">성준의 게시판 보기</a><br>
+	<a href="home.kdh">kdh의 게시판</a><br>
+	<a href="home.kjm">kjm의 게시판</a><br>
+	<a href="home.ldk">ldk의 게시판</a><br>
+	<a href="home.sdj">sdj의 게시판</a><br>
+	<a href="home.asj">asj의 게시판</a><br>
+	<a href="home.rjs">rjs의 게시판</a><br>
 </body>
 </html>
