@@ -7,7 +7,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
 /**
  * Servlet implementation class MainFrontController
  */
@@ -33,8 +32,7 @@ public class MainFrontController extends HttpServlet {
 		MainCommand com = null;
 		if(sp.equalsIgnoreCase("/home.main")) {
 			com = new MainHomeCommand();
-		}
-		else {
+		} else {
 			System.out.println("제공하지 않는 서비스 입니다.");
 		}
 		if (com!=null) {
