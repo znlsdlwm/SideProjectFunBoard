@@ -13,7 +13,7 @@ public class InsertUICommand implements Command {
 	@Override
 	public CommandAction execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
+
 		return new CommandAction(false, "sdj_insert.jsp");
 	}
 

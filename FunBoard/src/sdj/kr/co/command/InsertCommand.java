@@ -24,7 +24,7 @@ public class InsertCommand implements Command {
 		dao.insert(new BoardDTO(-1, writer, title, content, null, 0, 0, 0, 0));
 		
 		
-		return new CommandAction(true, "list.sdj");
+		return new CommandAction(true, "sdj_list.sdj");
 	}
 
 }

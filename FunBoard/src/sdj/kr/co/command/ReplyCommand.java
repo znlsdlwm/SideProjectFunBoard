@@ -27,6 +27,7 @@ public class ReplyCommand implements Command {
 		
 		BoardDAO dao = new BoardDAO();
 		BoardDTO dto = new BoardDTO(-1, writer, title, content, null, 0, -1, -1, -1);
+
 		dao.reply(orgnum,dto);
 		
 		

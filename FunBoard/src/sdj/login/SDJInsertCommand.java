@@ -27,7 +27,7 @@ public class SDJInsertCommand implements Command {
 		
 		MemberDAO dao = new MemberDAO();
 		dao.insert(new MemberDTO(id, name, age, pw));
-		return new CommandAction(true, "l_select.jsp");
+		return new CommandAction(true, "l_select.sdj");
 	}
 
 }

@@ -30,6 +30,7 @@ public class SDJDeleteCommand implements Command {
 					
 					
 					return new CommandAction(true,"l_select.sdj");
+//					return new CommandAction(true,"sdj_list.sdj");
 				} else {
 					return new CommandAction(true,"l_login.sdj");
 				}

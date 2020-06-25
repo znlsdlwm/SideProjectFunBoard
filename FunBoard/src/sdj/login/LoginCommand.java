@@ -26,10 +26,10 @@ public class LoginCommand implements Command {
 
 		if(login) {
 			HttpSession session = request.getSession();
-			session.setMaxInactiveInterval(60);
+			session.setMaxInactiveInterval(5000);
 			session.setAttribute("login", new LoginDTO(id,null));
 			return new CommandAction(true, "l_select.sdj");
-
+//			return new CommandAction(true,"sdj_list.sdj");
 		} else {
 			return new CommandAction(true, "l_loginui.sdj");
 
