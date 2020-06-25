@@ -7,9 +7,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import kjm.com.controller.insertUICommand;
-import kjm.com.controller.kjmMainCommand;
-
 /**
  * Servlet implementation class MainFrontController
  */
@@ -35,8 +32,6 @@ public class MainFrontController extends HttpServlet {
 		MainCommand com = null;
 		if(sp.equalsIgnoreCase("/home.main")) {
 			com = new MainHomeCommand();
-		}else if(sp.equalsIgnoreCase("/kjm.main")) {
-				com= new kjmMainCommand();	
 		} else {
 			System.out.println("제공하지 않는 서비스 입니다.");
 		}

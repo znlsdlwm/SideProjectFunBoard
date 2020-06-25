@@ -1,4 +1,4 @@
-package member.domain;
+package kr.co.util.main;
 
 import java.io.Serializable;
 
