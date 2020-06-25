@@ -41,8 +41,10 @@ public class FrontController extends HttpServlet {
 		
 		if(sp.equalsIgnoreCase("/kjmlist.kjm")) {
 			com= new ListPageCommand();
+		}else if(sp.equalsIgnoreCase("/home.kjm")) {
+			com= new ListPageCommand();
 		}else if(sp.equalsIgnoreCase("/kjmInsertui.kjm")) {
-		com= new insertUICommand();
+			com= new insertUICommand();
 		}else if(sp.equalsIgnoreCase("/kjminsert.kjm")) {
 			com= new insertCommand();
 		}else if(sp.equalsIgnoreCase("/kjmread.kjm")) {
