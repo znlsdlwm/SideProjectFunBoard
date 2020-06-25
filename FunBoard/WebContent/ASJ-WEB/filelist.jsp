@@ -11,7 +11,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Insert title here</title>
-<link href="./css/bootstrap.min.css" rel="stylesheet">
+<link href="./ASJ-WEB/css/bootstrap.min.css" rel="stylesheet">
 <link href="./css/custom.css" rel="stylesheet">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
@@ -71,21 +71,21 @@
 	<div class="row text-center">
 		<div class = "col-sm-4">
 			<div class="summer">
-			<img src="./image/bat.jpg" alt ="first" width="400" height="300">
+			<img src="./ASJ-WEB/image/bat.jpg" alt ="first" width="400" height="300">
 			<p><strong>베트남 팔라완</strong>
 			<p>한적한 여유로움과 다양한 액티비티를 즐기길 원한다면 필리핀의 팔라완으로 자유여행을 계획해보자. 항공권도 저렴한편</p>
 			</div>
 		</div>
 		<div class = "col-sm-4">
 			<div class="summer">
-			<img src="./image/uk.jpg" alt ="second" width="400" height="300">
+			<img src="./ASJ-WEB/image/uk.jpg" alt ="second" width="400" height="300">
 			<p><strong>북유럽</strong>
 			<p>항공권은 비싸지만 유럽만의 감성을 받을수 있고 사진 몇만장 찍어도 버릴게없는 풍경을 맛볼수 있다.</p>
 			</div>
 		</div>
 		<div class = "col-sm-4">
 			<div class="summer">
-			<img src="./image/ku.jpg" alt ="third" width="400" height="300">
+			<img src="./ASJ-WEB/image/ku.jpg" alt ="third" width="400" height="300">
 			<p><strong>일본의 교토</strong>
 			<p>가깝다고도 할수없고 멀다고 할수없는 나라 일본여행을 가본다면 여름축제의 음식과 볼거리를 즐기러 가보자.</p>
 			</div>

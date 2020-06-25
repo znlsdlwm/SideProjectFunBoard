@@ -11,7 +11,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width-device-width, initial-scale=1">
 <title>Insert title here</title>
-<link href="./css/bootstrap.min.css" rel="stylesheet">
+<link href="./ASJ-WEB/css/bootstrap.min.css" rel="stylesheet">
 <link href="./css/custom.css" rel="stylesheet">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
