@@ -101,7 +101,7 @@ public class BoardDAO {
 				int repRoot = rs.getInt("repRoot");
 				int repStep = rs.getInt("repStep");
 				int repIndent = rs.getInt("repIndent");
-				System.out.println(repIndent);
+				
 				list.add(new BoardDTO(num, writer, title, null, writeday, readcnt, repRoot, repStep, repIndent));
 			}
 		} catch (Exception e) {

@@ -33,11 +33,11 @@ public class UpdateUICommand implements Command {
 		if(session!=null) {
 			LoginDTO login = (LoginDTO) session.getAttribute("login");
 			
-			System.out.println(login);
+			
 			if(login != null) {
 				String id= request.getParameter("writer");
 				
-				System.out.println(id);
+				
 				if(login.getId().equals(id)) {
 					
 					String writer = request.getParameter("writer");

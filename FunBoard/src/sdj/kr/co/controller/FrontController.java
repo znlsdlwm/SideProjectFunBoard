@@ -7,18 +7,18 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import sdj.kr.co.command.CalenderCommand;
+
 import sdj.kr.co.command.Command;
 import sdj.kr.co.command.DeleteCommand;
 import sdj.kr.co.command.InsertCommand;
 import sdj.kr.co.command.InsertUICommand;
-//import sdj.kr.co.command.ListCommand;
+
 import sdj.kr.co.command.ListPageCommand;
 import sdj.kr.co.command.ReadCommand;
 import sdj.kr.co.command.ReplyCommand;
 import sdj.kr.co.command.ReplyUICommand;
 
-//import sdj.kr.co.command.SearchCommand;
+
 import sdj.kr.co.command.UpdateCommand;
 import sdj.kr.co.command.UpdateUICommand;
 import sdj.kr.co.domain.CommandAction;
@@ -68,8 +68,6 @@ public class FrontController extends HttpServlet {
 		if (sp.equalsIgnoreCase("/sdj_list.sdj")) {
 			/*com = new ListCommand();*/
 			com = new ListPageCommand();
-		} else if (sp.equalsIgnoreCase("/sdj_calender.sdj")) {
-			com = new CalenderCommand();
 		} else if (sp.equalsIgnoreCase("/sdj_insertui.sdj")) {
 			com = new InsertUICommand();
 		} else if (sp.equalsIgnoreCase("/sdj_insert.sdj")) {
